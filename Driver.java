@@ -3,7 +3,7 @@ import java.io.*;
 public class Driver
 {
 	static private AirportSystem airport;
-	static BufferedReader stdin = new BufferedRead(new InputStreamReader(System.in));
+	static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args)
     {
