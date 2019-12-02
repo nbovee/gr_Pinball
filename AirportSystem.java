@@ -65,12 +65,12 @@ public class AirportSystem
         }
     }
 
-    public void removeRunway(String runName)
+    public void removeRunway(String runName) throws AirportException
     {
         int found = checkRunway(runName);
         if(found >= 0)
         {
-            runways.remove(found);
+		runways.remove(found);
         }
         else
         {
@@ -83,6 +83,19 @@ public class AirportSystem
         Runway result = runways.get(nextRunway);
         nextRunway = ++nextRunway%runways.size();
         return result;
+    }
+
+    public Runway getRunway(String runName)
+    {
+	int found = checkRunway(runName);
+		if(found >=0)
+		{
+			return runways.get(found);
+		}
+		else
+		{
+			throw new AirportException("Runway not found.");
+		}
     }
 
     private Runway peekRunway()
@@ -131,13 +144,34 @@ public class AirportSystem
         }
     }
 
-    public void reenter(String flightNum)
+    public void reenter(String flightNum) throws AirportException, Exception
     {
+	Plane temp = null;
+	int num = waiting.size();
+	int index = -1;
+	for(int i = 0; i< num && index < 0; i++)
+	{
+		if(waiting.get(i).getFlightNumber().compareTo(flightNum) == 0)
+		{
+			index = i;
+			temp = waiting.get(i);
+		}
+	}
+	if(index >= 0)
+	{
+		waiting.remove(index);
+		addPlane(temp);
+	}
+	else
+	{
+		throw new AirportException("Runway to re-enter not found.");
+	}
+
         //match flight num in plane object
         //add to runway in Plane object
     }
 
-    public void addPlane(Plane airplane)
+    public void addPlane(Plane airplane) throws AirportException, Exception
     {
         String fn = airplane.getFlightNumber();
         int check = checkFlights(fn);
@@ -179,6 +213,7 @@ public class AirportSystem
             }
             else
             {
+		    activeFlights.remove(checkFlights(temp.getFlightNumber()));
                 if(isTakeoff == true)
                 {
                     takeoffs++;
