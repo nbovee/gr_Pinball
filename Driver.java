@@ -29,7 +29,7 @@ public class Driver
                     System.out.println(e.getMessage());
                 }
             }
-            System.out.println("Select from the following menu:\n\t0. Exit program.\n\t1. Plane enters the system.\n\t2. Plane takes off.\n\t3. Plane is allowed to re-enter a runway.\n\t4. Runway opens.\n\t5. Runway closes.\n\t6. Display info about planes waiting to take off.\n\t7. Display info about planes waiting to be allowed to re-enter a runway.\n\t8. Display number of planes who have taken off.");
+            System.out.println("Select from the following menu:\n\t0. Exit program.\n\t1. Plane enters the system.\n\t2. Plane attempts takes off.\n\t3. Plane is allowed to re-enter a runway.\n\t4. Runway opens.\n\t5. Runway closes.\n\t6. Display info about planes waiting to take off.\n\t7. Display info about planes waiting to be allowed to re-enter a runway.\n\t8. Display number of planes who have taken off.\n\t9. Plane attemps landing.\n\t10. Display info about planes waiting to land.\n\t11. Display number of planes who have landed.");
             boolean contin = true;
             int selection;
             while(contin == true)
@@ -67,12 +67,15 @@ public class Driver
                     case 8:
                         numTakeoff();
                         break;
-		    case 9:
-			landing();
-			break;
-		    case 10:
-			displayLanding();
-			break;
+                    case 9:
+                        landing();
+                        break;
+                    case 10:
+                        displayLanding();
+                        break;
+                    case 11:
+                        numLanding();
+                        break;
                     }
                 }
                 catch(Exception e)
@@ -151,14 +154,24 @@ public class Driver
 
     }
 
-    static public void displayTakeoff()
+    static public void numTakeoff()
     {
         System.out.println(airport.getTakeoffs() + " takeoffs have occurred.");
     }
 
+    static public void displayTakeoff()
+    {
+        System.out.println(airport.displayTakeoff());
+    }
+
+    static public void displayLanding()
+    {
+        System.out.println(airport.displayLanding());
+    }
+
     static public void displayWaiting()
     {
-
+        System.out.println(airport.displayWaiting());
     }
 
     static public void numLanding()
