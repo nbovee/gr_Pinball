@@ -42,7 +42,7 @@ public class AirportSystem
     private int checkFlights(String flightName)
     {
         int result = -1;
-        for(int i = 0; i < runways.size() && result < 0; i++)
+        for(int i = 0; i < activeFlights.size() && result < 0; i++)
         {
             if(activeFlights.get(i).compareTo(flightName) == 0)
             {
@@ -177,7 +177,7 @@ public class AirportSystem
         int check = checkFlights(fn);
         if(check < 0)
         {
-            int run = checkRunway(fn);
+            int run = checkRunway(airplane.getRunway());
             if(run >= 0)
             {
                 activeFlights.add(fn);
