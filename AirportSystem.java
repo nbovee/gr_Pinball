@@ -6,6 +6,7 @@ public class AirportSystem
     private boolean allowLanding;
     private int takeoffs;
     private int landings;
+    private int nextRunway; //THIS COULD BE BEST SERVED WITH AN INTERATOR IF POSSIBLE?
 
     public AirportSystem(String name)
     {
@@ -18,6 +19,7 @@ public class AirportSystem
         allowLanding = enable;
         takeoffs = 0;
         landings = 0;
+	nextRunway = 0;
     }
 
     public String getName()
@@ -37,13 +39,28 @@ public class AirportSystem
 
     public void addRunway(String runName)
     {
+	boolean found = runways(findKey(runName));
+	if(found != true)
+	{
         runways.add(new Runway(runName));
+	}
+	else
+	{
+	throw new AirportException("Runway already exists.");	
+	}
     }
 
     public void removeRunway(String runName)
     {
-        //find(runway)
-        //deleterunway()
+	boolean found = runways(findKey(runName));
+	if(found == true)
+	{
+        runways.removeKey(runName);
+	}
+	else
+	{
+	throw new AirportException("Runway not found.");	
+	}
     }
 
     private Runway nextRunway()

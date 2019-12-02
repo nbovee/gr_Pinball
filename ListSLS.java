@@ -73,7 +73,7 @@ public class ListSLS<E> implements ListInterface<E>
         } // end if
     } // end get
 
-    public E find(E toFind)
+    public E findKey(E toFind)
     {
         E result = null;
         //TO COMPLETEL
