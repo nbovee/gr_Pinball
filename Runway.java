@@ -1,11 +1,11 @@
 /*
  * Purpose: Data Structure and Algorithms Project: Runway for planes to take off of or land on.
  * Status: Complete and thoroughly tested
- * Last update: 11/24/19
+ * Last update: 12/2/19
  * Submitted: 12/03/19
  * Comment: test suite and sample run attached
  * @author: Devyn Melendez
- * @version: 2019.11.24
+ * @version: 2019.12.02
  */
 
 public class Runway
@@ -24,6 +24,80 @@ public class Runway
         name = n;
         departures = new QueueCSLS<Plane>();
         arrivals = new QueueCSLS<Plane>();
+    }
+
+    /**
+     * Enqueues a new plane that will depart from this runway.
+     * @param p The departing plane.
+     */
+    public void addDeparture(Plane p)
+    {
+        departures.enqueue(p);
+    }
+
+    /**
+     * Dequeues the oldest departing plane from this runway.
+     * @return The removed plane.
+     */
+    public Plane removeDeparture()
+    {
+        return departures.dequeue();
+    }
+
+    /**
+     * Enqueues a new plane that will arrive on this runway.
+     * @param p The arriving plane.
+     */
+    public void addArrival(Plane p)
+    {
+        arrivals.enqueue(p);
+    }
+
+    /**
+     * Dequeues the oldest arriving plane from this runway.
+     * @return The removed plane.
+     */
+    public Plane removeArrival()
+    {
+        return arrivals.dequeue();
+    }
+
+    /**
+     * Returns the oldest plane set to depart from this runway.
+     * @return The oldest plane.
+     */
+    public Plane peekDepartures()
+    {
+        return departures.peek();
+    }
+
+    /**
+     * Returns the oldest plane set to arrive on this runway.
+     * @return The oldest plane.
+     */
+    public Plane peekArrivals()
+    {
+        return arrivals.peek();
+    }
+
+    /**
+     * Returns true if there are no planes set to depart from
+     * this runway; returns false otherwise.
+     * @return Boolean stating whether there or not there are departing planes.
+     */
+    public boolean noDepartures()
+    {
+        return departures.isEmpty();
+    }
+
+    /**
+     * Returns true if there are no planes set to arrive on
+     * this runway; returns true otherwise.
+     * @return Boolean stating whether or not there are arriving planes.
+     */
+    public boolean noArrivals()
+    {
+        return arrivals.isEmpty();
     }
 
     /**
