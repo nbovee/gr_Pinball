@@ -55,14 +55,29 @@ public class AirportSystem
         //return runway
     }
 
-    public void addPlaneRunway(Plane airplane, Runway run)
+    public Plane getNextPlane(boolean isTakeoff)
     {
+	Plane result;
+	//get next runway that has a plane in the appropriate queue	
+
+	return result;
+    }
+
+    public void reenter(String flightNum)
+    {
+	//match flight num in plane object
+	//add to runway in Plane object
+    }
+
+    public void addPlane(Plane airplane)
+    {
+	
         //find( runway)
         //if enable, check takeoff/landing
         //runway.add(plane)
     }
 
-    public void nextPlane(boolean isTakeoff, boolean allow) throws AirportException
+    public void processPlane(boolean isTakeoff, boolean allow) throws AirportException
     {
         Plane temp = nextRunway().removePlane(isTakeoff);
         if(temp != null)

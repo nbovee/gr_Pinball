@@ -75,14 +75,14 @@ public class ListSLS<E> implements ListInterface<E>
 
     public E find(E toFind)
     {
-	E result = null;
-	//TO COMPLETEL
-	return result;
+        E result = null;
+        //TO COMPLETEL
+        return result;
     }
-  
+
     public void add(E item)
     {
-	add(numItems,item);
+        add(numItems,item);
     }
 
     public void add(int index, E item)
