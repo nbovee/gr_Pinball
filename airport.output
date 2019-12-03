@@ -1,0 +1,255 @@
+Initializing Airport
+Enter Airport name: Enter number of runways: 3
+Enter name for runway #1: NorthEast
+Enter name for runway #2: SouthWest
+Enter name for runway #3: West
+Select from the following menu:
+	0. Exit program.
+	1. Plane enters the system.
+	2. Plane attempts takes off.
+	3. Plane is allowed to re-enter a runway.
+	4. Runway opens.
+	5. Runway closes.
+	6. Display info about planes waiting to take off.
+	7. Display info about planes waiting to be allowed to re-enter a runway.
+	8. Display number of planes who have taken off.
+	9. Plane attemps landing.
+	10. Display info about planes waiting to land.
+	11. Display number of planes who have landed.
+Make your selection now: No plane on any runway.
+Make your selection now: No planes in wait list.
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: 
+Make your selection now: 0 takeoffs have occurred.
+Make your selection now: Enter flight number: USAir705
+Enter destination: Boston
+Enter runway: NorthEast
+Make your selection now: Enter flight number: AirFrance212
+Enter destination: Paris
+Enter runway: NorthEast
+Make your selection now: Enter flight number: British909
+Enter destination: London
+Enter runway: NorthEast
+Make your selection now: Enter flight number: United954
+Enter destination: Pittsburgh
+Enter runway: NorthWest
+Runway not found.
+Make your selection now: For input string: "West"
+Make your selection now: Enter flight number: Delta204
+Enter destination: Chicago
+Enter runway: NorthEast
+ListException on add
+Make your selection now: Enter flight number: USAir305
+Enter destination: San Diego
+Enter runway: West
+ListException on add
+Make your selection now: Enter flight number: United572
+Enter destination: Fort Lauderdale
+Enter runway: SouthWest
+ListException on add
+Make your selection now: No planes in wait list.
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+Flight USAir705 to Boston. Flight AirFrance212 to Paris. Flight British909 to London. 
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: 
+Make your selection now: 0 takeoffs have occurred.
+Make your selection now: Is flight Flight USAir705 to Boston. clear for takeoff(Y/N): N
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+Flight AirFrance212 to Paris. Flight British909 to London. 
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight USAir705 to Boston.
+
+Make your selection now: 0 takeoffs have occurred.
+Make your selection now: Enter flight number: American493
+Enter destination: Seattle
+Enter runway: West
+ListException on add
+Make your selection now: Is flight Flight AirFrance212 to Paris. clear for takeoff(Y/N): Y
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+Flight British909 to London. 
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight USAir705 to Boston.
+
+Make your selection now: 1 takeoffs have occurred.
+Make your selection now: Is flight Flight British909 to London. clear for takeoff(Y/N): N
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight USAir705 to Boston.
+Flight British909 to London.
+
+Make your selection now: 1 takeoffs have occurred.
+Make your selection now: No plane on any runway.
+Make your selection now: For input string: "N"
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight USAir705 to Boston.
+Flight British909 to London.
+
+Make your selection now: 1 takeoffs have occurred.
+Make your selection now: No plane on any runway.
+Make your selection now: For input string: "Y"
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight USAir705 to Boston.
+Flight British909 to London.
+
+Make your selection now: 1 takeoffs have occurred.
+Make your selection now: Enter flight number: Continental339
+Enter destination: Montreal
+Enter runway: NorthEast
+Make your selection now: Enter flight number: jetBlue856
+Enter destination: Atlanta
+Enter runway: SouthWest
+ListException on add
+Make your selection now: Enter flight number: AmericaWest691
+Enter destination: San Francisco
+Enter runway: West
+ListException on add
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+Flight Continental339 to Montreal. 
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight USAir705 to Boston.
+Flight British909 to London.
+
+Make your selection now: 1 takeoffs have occurred.
+Make your selection now: Enter the name of the runway to open: West
+Runway already exists.
+Make your selection now: For input string: "East"
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+Flight Continental339 to Montreal. 
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight USAir705 to Boston.
+Flight British909 to London.
+
+Make your selection now: 1 takeoffs have occurred.
+Make your selection now: Enter flight number: Lufthansa581
+Enter destination: Muenchen
+Enter runway: East
+Runway not found.
+Make your selection now: Enter flight number: Alitalia576
+Enter destination: Rome
+Enter runway: East
+Runway not found.
+Make your selection now: Enter flight number: Continental304
+Enter destination: Miami
+Enter runway: SouthWest
+ListException on add
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+Flight Continental339 to Montreal. 
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight USAir705 to Boston.
+Flight British909 to London.
+
+Make your selection now: 1 takeoffs have occurred.
+Make your selection now: Is flight Flight Continental339 to Montreal. clear for takeoff(Y/N): Y
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight USAir705 to Boston.
+Flight British909 to London.
+
+Make your selection now: 2 takeoffs have occurred.
+Make your selection now: Enter the the flight number: USAir705
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+Flight USAir705 to Boston. 
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight British909 to London.
+
+Make your selection now: 2 takeoffs have occurred.
+Make your selection now: Is flight Flight USAir705 to Boston. clear for takeoff(Y/N): Y
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight British909 to London.
+
+Make your selection now: 3 takeoffs have occurred.
+Make your selection now: No plane on any runway.
+Make your selection now: For input string: "Y"
+Make your selection now: Enter the name of the runway to close: North
+Runway not found.
+Make your selection now: For input string: "West"
+Make your selection now: For input string: "West"
+Make your selection now: For input string: "North"
+Make your selection now: For input string: "NorthEast"
+Make your selection now: For input string: "SouthWest"
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight British909 to London.
+
+Make your selection now: 3 takeoffs have occurred.
+Make your selection now: Enter the the flight number: United953
+Plane specified not found in wait list.
+Make your selection now: For input string: "United954"
+Make your selection now: These planes are waiting for takeoff on runway NorthEast:
+
+These planes are waiting for takeoff on runway SouthWest:
+
+These planes are waiting for takeoff on runway West:
+
+
+Make your selection now: Waiting List: Flight British909 to London.
+
+Make your selection now: 3 takeoffs have occurred.
+Make your selection now: 

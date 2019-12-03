@@ -1,71 +1,60 @@
 /*
- * Purpose: Data Structure and Algorithms Lab 05 Problem 4
+ * Purpose: Data Structure and Algorithms Lab 02 Problem 1
  * Status: Complete and thoroughly tested
- * Last update: 10/08/19
- * Submitted:  10/08/19
- * Comment: not fully tested
+ * Last update: 09/23/19
+ * Submitted:  09/17/19
+ * Comment: test suite and sample run attached
  * @author: Nick Bovee
- * @version: 2019.10.08
+ * @version: 2019.09.23
  */
 
 
-// ********************************************************
-// Array-based implementation of the ADT list.
-// *********************************************************
-public class ListRAB<E> implements ListInterface<E>
-{
+import java.util.*;
 
-    private static final int MAX_LIST = 3;
-    protected Object[] items;  // an array of list items
-    protected int numItems;  // number of items in list
+public class ListRAB<E> extends ListAB<E> implements ListInterface<E>
+{
+//	private int assignments = 0;
 
     public ListRAB()
     {
-        items = new Object[MAX_LIST];
-        numItems = 0;
-    }  // end default constructor
-
-    public boolean isEmpty()
-    {
-        return (numItems == 0);
-    } // end isEmpty
-
-    public int size()
-    {
-        return numItems;
-    }  // end size
-
-    public void removeAll()
-    {
-        // Creates a new array; marks old array for
-        // garbage collection.
-        items = new Object[MAX_LIST];
-        numItems = 0;
-    } // end removeAll
-
-    public void add(E item)
-    {
-        add(numItems,item);
+        super();
     }
 
-    public void add(int index, E item)
-    throws  ListIndexOutOfBoundsException
+    public void add(int index, E item) throws ListIndexOutOfBoundsException //revised add
     {
-        if (numItems==items.length) //fixes implementation errors //fixes programming style
-        {
-            throw new ListException("ListException on add");
-        }  // end if
         if (index >= 0 && index <= numItems)
         {
-            // make room for new element by shifting all items at
-            // positions >= index toward the end of the
-            // list (no shift if index == numItems+1)
-            for (int pos = numItems-1; pos >= index; pos--)  //textbook code modified to eliminate logic error causing ArrayIndexOutOfBoundsException
+            if (numItems==items.length) //fixes implementation errors //fixes programming style
             {
-                items[pos+1] = items[pos];
-            } // end for
-            // insert new item
-            items[index] = item;
+                int newSize =(int)(items.length * 3 / 2);
+                Object[] newArray = (E[]) new Object[newSize];
+
+                for(int i = 0, j = 0; j < items.length; i++, j++)
+                {
+                    if(i == index)
+                    {
+                        j--;
+                    }
+                    else
+                    {
+                        newArray[i] = items[j];
+
+                    }
+                }
+                newArray[index] = item;
+                items = newArray;
+            }
+            else {
+                // make room for new element by shifting all items at
+                // positions >= index toward the end of the
+                // list (no shift if index == numItems+1)
+                for (int pos = numItems-1; pos >= index; pos--)  //textbook code modified to eliminate logic error causing ArrayIndexOutOfBoundsException
+                {
+                    items[pos+1] = items[pos];
+                } // end for
+                // insert new item
+                items[index] = item;
+            }
             numItems++;
         }
         else
@@ -76,43 +65,54 @@ public class ListRAB<E> implements ListInterface<E>
         }  // end if
     } //end add
 
-    @SuppressWarnings("unchecked")
-    public E get(int index)
-    throws ListIndexOutOfBoundsException
+    public String toString()
     {
-        if (index >= 0 && index < numItems)
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i<numItems; i++)
         {
-            return (E) items[index];
+            builder.append(items[i] + " ");
         }
-        else
-        {
-            // index out of range
-            throw new ListIndexOutOfBoundsException(
-                "ListIndexOutOfBoundsException on get");
-        }  // end if
-    } // end get
+        return builder.toString();
+    }
 
-    public void remove(int index)
-    throws ListIndexOutOfBoundsException
+    public void reverse()
     {
-        if (index >= 0 && index < numItems)
-        {
-            // delete item by shifting all items at
-            // positions > index toward the beginning of the list
-            // (no shift if index == size)
-            for (int pos = index+1; pos < numItems; pos++) //textbook code modified to eliminate logic error causing ArrayIndexOutOfBoundsException
+        //below is the most efficient reverse method tested. See conclusions.
+        reverseMemDirect();
+    }
 
-            {
-                items[pos-1] = items[pos];
-            }  // end for
-            numItems--;
-            items[numItems] = null; //fixes memory leak
-        }
-        else
+//private void reverseIPDirect()
+//{
+//   for(int i = 0; i < numItems/2; i++)
+//  {
+//     Object temp = items[i];
+//    items[i] = items[numItems-i-1];
+//   items[numItems-i-1] = temp;
+// // assignments += 3;//3 values
+//}
+//}
+
+    private void reverseMemDirect()
+    {
+        Object[] newItems = (E[]) new Object[numItems];
+        for(int i = 0; i<numItems; i++)
         {
-            // index out of range
-            throw new ListIndexOutOfBoundsException(
-                "ListIndexOutOfBoundsException on remove");
-        }  // end if
-    } //end remove
+            newItems[i] = items[numItems-i-1];
+            //assignments++;//1 values
+        }
+        items = newItems;
+    }
+
+    private void resize()
+    {
+        int newSize =(int)(items.length * 3 / 2);
+        Object[] newArray = new Object[newSize];
+        for(int i = 0; i < items.length; i++)
+        {
+            newArray[i] = items[i];
+        }
+        items = newArray;
+
+    }
 }
+

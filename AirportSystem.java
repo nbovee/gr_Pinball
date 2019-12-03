@@ -26,6 +26,11 @@ public class AirportSystem
         nextRunway = 0;
     }
 
+    public boolean runwayValid(String runName)
+    {
+	return (checkRunway(runName) < 0) ? false : true;
+    }
+
     private int checkRunway(String runName)
     {
         int result = -1;
@@ -37,6 +42,11 @@ public class AirportSystem
             }
         }
         return result;
+    }
+
+    public boolean waitIsEmpty()
+    {
+	return waiting.isEmpty();
     }
 
     private int checkFlights(String flightName)
@@ -57,7 +67,7 @@ public class AirportSystem
         int found = checkRunway(runName);
         if(found < 0)
         {
-            runways.add(new Runway(runName));
+            runways.add(runways.size(),new Runway(runName));
         }
         else
         {
@@ -106,21 +116,22 @@ public class AirportSystem
     private Runway nextActionableRunway(boolean isTakeoff) throws AirportException
     {
         Runway result = null;
-        boolean viable = false;
+        boolean empty = true;
         int count = 0;
-        while(viable == false && count < runways.size())
+        while(empty == true && count < runways.size())
         {
             result = nextRunway();
             if(isTakeoff == true)
             {
-                viable = result.noDepartures();
+                empty = result.noDepartures();
             }
             else
             {
-                viable = result.noArrivals();
+                empty = result.noArrivals();
             }
+	    count++;
         }
-        if(viable == true)
+        if(empty == false)
         {
             return result;
         }
@@ -128,6 +139,33 @@ public class AirportSystem
         {
             throw new AirportException("No available planes on any runway.");
         }
+    }
+
+    public Plane peekNextPlane(boolean isTakeoff) throws AirportException, Exception
+    {
+	    Plane temp = null;
+	    try{
+	if(isTakeoff == true)
+	{
+		
+		temp =  peekRunway().peekDepartures();
+	}
+	else
+	{
+		temp =  peekRunway().peekArrivals();
+	}
+	    }
+	    catch(Exception e)
+	    {
+	    }
+	if(temp != null)
+	{
+		return temp;
+	}
+	else
+	{
+		throw new AirportException("No plane on any runway.");
+	}
     }
 
     public Plane getNextPlane(boolean isTakeoff) throws AirportException
@@ -160,15 +198,13 @@ public class AirportSystem
 	if(index >= 0)
 	{
 		waiting.remove(index);
+		activeFlights.remove(checkFlights(flightNum));
 		addPlane(temp);
 	}
 	else
 	{
-		throw new AirportException("Runway to re-enter not found.");
+		throw new AirportException("Plane specified not found in wait list.");
 	}
-
-        //match flight num in plane object
-        //add to runway in Plane object
     }
 
     public void addPlane(Plane airplane) throws AirportException, Exception
@@ -180,7 +216,7 @@ public class AirportSystem
             int run = checkRunway(airplane.getRunway());
             if(run >= 0)
             {
-                activeFlights.add(fn);
+                activeFlights.add(activeFlights.size(),fn);
 		Runway temp = runways.get(run);
                 if(airplane.getDestination().compareTo(this.name) == 0)
                 {
@@ -207,9 +243,9 @@ public class AirportSystem
         Plane temp = getNextPlane(isTakeoff);
         if(temp != null)
         {
-            if(allow = false)
+            if(allow == false)
             {
-                waiting.add(temp);
+                waiting.add(waiting.size(),temp);
             }
             else
             {
@@ -271,6 +307,7 @@ public class AirportSystem
     {
         StringBuilder sb = new StringBuilder();
         int num = waiting.size();
+	sb.append("Waiting List: ");
         for(int i = 0; i<num; i++)
         {
             sb.append(waiting.get(i) + "\n");

@@ -10,9 +10,9 @@ public class Driver
         try {
             System.out.println("Initializing Airport");
             System.out.print("Enter Airport name: ");
-            String name = stdin.readLine();
-            System.out.println(name);
-            airport = new AirportSystem(name);
+           // String name = stdin.readLine();
+           // System.out.println(name);
+            airport = new AirportSystem("airport");
             System.out.print("Enter number of runways: ");
             int numRun = Integer.parseInt(stdin.readLine());
             System.out.println(numRun);
@@ -37,7 +37,7 @@ public class Driver
                 try {
                     System.out.print("Make your selection now: ");
                     selection = Integer.parseInt(stdin.readLine());
-
+			System.out.println(selection);
                     switch (selection)
                     {
                     case 0:
@@ -77,6 +77,7 @@ public class Driver
                         numLanding();
                         break;
                     }
+		    System.out.println();
                 }
                 catch(Exception e)
                 {
@@ -98,16 +99,26 @@ public class Driver
         System.out.print("Enter destination: ");
         String d = stdin.readLine();
         System.out.println(d);
+	String r;
+	boolean val = true;
+	do
+	{
         System.out.print("Enter runway: ");
-        String r = stdin.readLine();
-        System.out.println(r);
+        r = stdin.readLine();
+	System.out.println(r);
+	val = airport.runwayValid(r);
+	if(val != true)
+	{
+		System.out.println("No such runway.");
+	}
+	} while(val != true);
         airport.addPlane(new Plane(fn,d,r)); //throw error if FN already exists, or runway doesnt
 
     }
 
-    static public void takeoff() throws AirportException, Exception
+    static public void takeoff() throws AirportException, QueueException, Exception
     {
-        Plane temp = airport.getNextPlane(true);
+        Plane temp = airport.peekNextPlane(true);
         System.out.print("Is flight " + temp + " clear for takeoff(Y/N): ");
         String input = stdin.readLine().toUpperCase();
         System.out.println(input);
@@ -127,18 +138,36 @@ public class Driver
 
     static public void reenter() throws AirportException, Exception
     {
+	//CHECK IF WAITING ISEMPTY
+	if(airport.waitIsEmpty() != true)
+	{
         System.out.print("Enter the the flight number: ");
         String toAdd = stdin.readLine();
         System.out.println(toAdd);
         airport.reenter(toAdd);
+	}
+	else
+	{
+		throw new AirportException("No planes in wait list.");
+	}
 
     }
 
     static public void addRunway() throws AirportException, Exception
     {
+	    String toAdd;
+	boolean val = true;
+	do
+	{
         System.out.print("Enter the name of the runway to open: ");
-        String toAdd = stdin.readLine();
-        System.out.println(toAdd);
+        toAdd = stdin.readLine();
+	System.out.println(toAdd);
+	val = airport.runwayValid(toAdd);
+	if(val == true)
+	{
+		System.out.println("Runway already exists.");
+	}
+	} while(val == true);
         airport.addRunway(toAdd);
         System.out.println(toAdd + " was added.");
 

@@ -1,11 +1,11 @@
 /*
  * Purpose: Data Structure and Algorithms Project: Plane that takes off of / lands on runways.
  * Status: Complete and thoroughly tested
- * Last update: 11/24/19
+ * Last update: 12/03/19
  * Submitted: 12/03/19
  * Comment: test suite and sample run attached
  * @author: Devyn Melendez
- * @version: 2019.11.24
+ * @version: 2019.12.03
  */
 
 public class Plane
@@ -87,6 +87,6 @@ public class Plane
      */
     public String toString()
     {
-        return "Flight " + flightNumber + " to " + destination + ".";
+        return "Flight" + flightNumber + " to " + destination + ".";
     }
 }
