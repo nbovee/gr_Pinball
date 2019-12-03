@@ -236,7 +236,7 @@ public class Driver
             } while(comp == 0 || exists == false);
             temp.setRunway(newRun);
             airport.addPlane(temp);
-            System.out.println(temp.getFlightNumber() + " is now assigned to runway " + newRun);
+            System.out.println(temp.getFlightNumber() + " is now assigned to runway " + newRun + ".");
         }
         while(run.noArrivals() == false)
         {
@@ -262,9 +262,38 @@ public class Driver
             } while(comp == 0 || exists == false);
             temp.setRunway(newRun);
             airport.addPlane(temp);
-            System.out.println(temp.getFlightNumber() + " is now assigned to runway " + newRun);
+            System.out.println(temp.getFlightNumber() + " is now assigned to runway " + newRun + ".");
         }
 
+        ListRAB<Plane> wait = airport.getWaiting();
+        for(int i = 0; i<wait.size(); i++)
+        {
+            temp = wait.get(i);
+            if(temp.getRunway().compareTo(toRem) == 0)
+            {
+                String newRun = null;
+                int comp = 0;
+                boolean exists = false;
+                do
+                {
+                    System.out.print("Enter new runway for " + temp.getFlightNumber() + ": ");
+                    newRun = stdin.readLine();
+                    System.out.println(newRun);
+                    exists = airport.runwayValid(newRun);
+                    comp = newRun.compareTo(toRem);
+                    if(comp == 0)
+                    {
+                        System.out.println("This is the runway that will close.");
+                    }
+                    if(exists == false)
+                    {
+                        System.out.println("No such runway.");
+                    }
+                } while(comp == 0 || exists == false);
+                temp.setRunway(newRun);
+                System.out.println(temp.getFlightNumber() + " is now assigned to runway " + newRun);
+            }
+        }
 
         airport.removeRunway(toRem);
         System.out.println(toRem + " has been closed.");

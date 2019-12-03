@@ -64,13 +64,12 @@ public class AirportSystem
             return null;
     }
 
-    public Plane removeWaitingPlane(String runName) throws AirportException
+    public Plane peekWaitingPlane(String runName) throws AirportException
     {
         int check = checkWaiting(runName);
         if(check >= 0)
         {
             Plane temp = waiting.get(check);
-            activeFlights.remove(checkFlights(temp.getFlightNumber()));
             return temp;
         }
         else
@@ -95,6 +94,10 @@ public class AirportSystem
         return waiting.isEmpty();
     }
 
+    public ListRAB<Plane> getWaiting()
+    {
+        return waiting;
+    }
     private int checkFlights(String flightName)
     {
         int result = -1;
