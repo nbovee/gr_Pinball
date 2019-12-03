@@ -9,7 +9,7 @@
  */
 import java.io.*;
 
-public class Driver
+public class Driver1
 {
     static private AirportSystem airport;
     static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
@@ -21,7 +21,10 @@ public class Driver
     {
         try {
             System.out.println("Initializing Airport");
-            airport = new AirportSystem("",false);
+            System.out.print("Enter Airport name: ");
+            String name = stdin.readLine();
+            System.out.println(name);
+            airport = new AirportSystem(name,false);
             System.out.print("Enter number of runways: ");
             int numRun = Integer.parseInt(stdin.readLine());
             System.out.println(numRun);
@@ -76,6 +79,15 @@ public class Driver
                     case 8:
                         numTakeoff();
                         break;
+                    case 9:
+                        landing();
+                        break;
+                    case 10:
+                        displayLanding();
+                        break;
+                    case 11:
+                        numLanding();
+                        break;
                     }
                     System.out.println();
                 }
@@ -116,7 +128,8 @@ public class Driver
             }
         } while(val != true);
         airport.addPlane(new Plane(fn,d,r));
-        System.out.println("Flight " + fn + " is now waiting for takeoff on runway " + r + ".");
+        System.out.println(airport.getName() + " " + airport.getName().compareTo(d));
+        System.out.println("Flight " + fn + " is now waiting for clearance on runway " + r + ".");
 
     }
 
@@ -151,10 +164,10 @@ public class Driver
         String input = stdin.readLine().toUpperCase();
         System.out.println(input);
         boolean allow = (input.compareTo("Y") == 0 ) ? true : false;
-        airport.processPlane(true,allow);
+        airport.processPlane(false,allow);
         if(allow ==true)
         {
-            System.out.println(temp.getFlightNumber() + " has taken off from runway " + temp.getRunway() + ".");
+            System.out.println(temp.getFlightNumber() + " has landed on runway " + temp.getRunway() + ".");
         }
         else
         {
