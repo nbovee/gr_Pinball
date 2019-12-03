@@ -1,4 +1,5 @@
 Initializing Airport
+Enter Airport name: Boston
 Enter number of runways: 3
 Enter name for runway #1: NorthEast
 Enter name for runway #2: SouthWest
@@ -37,19 +38,22 @@ Make your selection now: 1
 Enter flight number: USAir705
 Enter destination: Boston
 Enter runway: NorthEast
-Flight USAir705 is now waiting for takeoff on runway NorthEast.
+Boston 0
+Flight USAir705 is now waiting for clearance on runway NorthEast.
 
 Make your selection now: 1
 Enter flight number: AirFrance212
 Enter destination: Paris
 Enter runway: NorthEast
-Flight AirFrance212 is now waiting for takeoff on runway NorthEast.
+Boston -14
+Flight AirFrance212 is now waiting for clearance on runway NorthEast.
 
 Make your selection now: 1
 Enter flight number: British909
-Enter destination: London
+Enter destination: Boston
 Enter runway: NorthEast
-Flight British909 is now waiting for takeoff on runway NorthEast.
+Boston 0
+Flight British909 is now waiting for clearance on runway NorthEast.
 
 Make your selection now: 1
 Enter flight number: United954
@@ -57,34 +61,35 @@ Enter destination: Pittsburgh
 Enter runway: NorthWest
 No such runway.
 Enter runway: West
-Flight United954 is now waiting for takeoff on runway West.
+Boston -14
+Flight United954 is now waiting for clearance on runway West.
 
 Make your selection now: 1
 Enter flight number: Delta204
-Enter destination: Chicago
+Enter destination: Boston
 Enter runway: NorthEast
-Flight Delta204 is now waiting for takeoff on runway NorthEast.
+Boston 0
+Flight Delta204 is now waiting for clearance on runway NorthEast.
 
 Make your selection now: 1
 Enter flight number: USAir305
 Enter destination: San Diego
 Enter runway: West
-Flight USAir305 is now waiting for takeoff on runway West.
+Boston -17
+Flight USAir305 is now waiting for clearance on runway West.
 
 Make your selection now: 1
 Enter flight number: United572
 Enter destination: Fort Lauderdale
 Enter runway: SouthWest
-Flight United572 is now waiting for takeoff on runway SouthWest.
+Boston -4
+Flight United572 is now waiting for clearance on runway SouthWest.
 
 Make your selection now: 3
 No planes in wait list.
 Make your selection now: 6
 These planes are waiting to takeoff from runway NorthEast:
-Flight USAir705 to Boston.
 Flight AirFrance212 to Paris.
-Flight British909 to London.
-Flight Delta204 to Chicago.
 
 These planes are waiting to takeoff from runway SouthWest:
 Flight United572 to Fort Lauderdale.
@@ -99,18 +104,50 @@ No flights are waiting for clearance.
 Make your selection now: 8
 0 takeoffs have occurred.
 
+Make your selection now: 10
+These planes are waiting to land on runway NorthEast:
+Flight USAir705 to Boston.
+Flight British909 to Boston.
+Flight Delta204 to Boston.
+
+No planes are waiting to land on runway SouthWest.
+
+No planes are waiting to land on runway West.
+
+Make your selection now: 11
+0 landings have occurred.
+
+Make your selection now: 9
+Is Flight AirFrance212 to Paris. clear for landing(Y/N): Y
+AirFrance212 has landed on runway NorthEast.
+
+Make your selection now: 9
+Is Flight United572 to Fort Lauderdale. clear for landing(Y/N): N
+United572 has been denied clearance.
+
+Make your selection now: 9
+Is Flight United572 to Fort Lauderdale. clear for landing(Y/N): Y
+United572 has landed on runway SouthWest.
+
+Make your selection now: 10
+No planes are waiting to land on runway NorthEast.
+
+No planes are waiting to land on runway SouthWest.
+
+No planes are waiting to land on runway West.
+
+Make your selection now: 11
+2 landings have occurred.
+
 Make your selection now: 2
-Is Flight USAir705 to Boston. clear for takeoff(Y/N): N
-USAir705 has been denied clearance.
+Is Flight United572 to Fort Lauderdale. clear for takeoff(Y/N): N
+United572 has been denied clearance.
 
 Make your selection now: 6
 These planes are waiting to takeoff from runway NorthEast:
 Flight AirFrance212 to Paris.
-Flight British909 to London.
-Flight Delta204 to Chicago.
 
-These planes are waiting to takeoff from runway SouthWest:
-Flight United572 to Fort Lauderdale.
+No planes are waiting to takeoff from runway SouthWest.
 
 These planes are waiting to takeoff from runway West:
 Flight United954 to Pittsburgh.
@@ -118,7 +155,8 @@ Flight USAir305 to San Diego.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight USAir705 to Boston.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 
 Make your selection now: 8
 0 takeoffs have occurred.
@@ -127,41 +165,16 @@ Make your selection now: 1
 Enter flight number: American493
 Enter destination: Seattle
 Enter runway: West
-Flight American493 is now waiting for takeoff on runway West.
+Boston -17
+Flight American493 is now waiting for clearance on runway West.
 
 Make your selection now: 2
-Is Flight United572 to Fort Lauderdale. clear for takeoff(Y/N): Y
-United572 has taken off from runway SouthWest.
+Is Flight United954 to Pittsburgh. clear for takeoff(Y/N): Y
+United954 has taken off from runway West.
 
 Make your selection now: 6
 These planes are waiting to takeoff from runway NorthEast:
 Flight AirFrance212 to Paris.
-Flight British909 to London.
-Flight Delta204 to Chicago.
-
-No planes are waiting to takeoff from runway SouthWest.
-
-These planes are waiting to takeoff from runway West:
-Flight United954 to Pittsburgh.
-Flight USAir305 to San Diego.
-Flight American493 to Seattle.
-
-Make your selection now: 7
-These flights are waiting for clearance:
-Flight USAir705 to Boston.
-
-Make your selection now: 8
-1 takeoffs have occurred.
-
-Make your selection now: 2
-Is Flight United954 to Pittsburgh. clear for takeoff(Y/N): N
-United954 has been denied clearance.
-
-Make your selection now: 6
-These planes are waiting to takeoff from runway NorthEast:
-Flight AirFrance212 to Paris.
-Flight British909 to London.
-Flight Delta204 to Chicago.
 
 No planes are waiting to takeoff from runway SouthWest.
 
@@ -171,8 +184,8 @@ Flight American493 to Seattle.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight USAir705 to Boston.
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 
 Make your selection now: 8
 1 takeoffs have occurred.
@@ -182,9 +195,7 @@ Is Flight AirFrance212 to Paris. clear for takeoff(Y/N): N
 AirFrance212 has been denied clearance.
 
 Make your selection now: 6
-These planes are waiting to takeoff from runway NorthEast:
-Flight British909 to London.
-Flight Delta204 to Chicago.
+No planes are waiting to takeoff from runway NorthEast.
 
 No planes are waiting to takeoff from runway SouthWest.
 
@@ -194,21 +205,19 @@ Flight American493 to Seattle.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight USAir705 to Boston.
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
 
 Make your selection now: 8
 1 takeoffs have occurred.
 
 Make your selection now: 2
-Is Flight USAir305 to San Diego. clear for takeoff(Y/N): Y
-USAir305 has taken off from runway West.
+Is Flight USAir305 to San Diego. clear for takeoff(Y/N): N
+USAir305 has been denied clearance.
 
 Make your selection now: 6
-These planes are waiting to takeoff from runway NorthEast:
-Flight British909 to London.
-Flight Delta204 to Chicago.
+No planes are waiting to takeoff from runway NorthEast.
 
 No planes are waiting to takeoff from runway SouthWest.
 
@@ -217,9 +226,31 @@ Flight American493 to Seattle.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight USAir705 to Boston.
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
+
+Make your selection now: 8
+1 takeoffs have occurred.
+
+Make your selection now: 2
+Is Flight American493 to Seattle. clear for takeoff(Y/N): Y
+American493 has taken off from runway West.
+
+Make your selection now: 6
+No planes are waiting to takeoff from runway NorthEast.
+
+No planes are waiting to takeoff from runway SouthWest.
+
+No planes are waiting to takeoff from runway West.
+
+Make your selection now: 7
+These flights are waiting for clearance:
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
+Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
 
 Make your selection now: 8
 2 takeoffs have occurred.
@@ -228,38 +259,39 @@ Make your selection now: 1
 Enter flight number: Continental339
 Enter destination: Montreal
 Enter runway: NorthEast
-Flight Continental339 is now waiting for takeoff on runway NorthEast.
+Boston -11
+Flight Continental339 is now waiting for clearance on runway NorthEast.
 
 Make your selection now: 1
 Enter flight number: jetBlue856
 Enter destination: Atlanta
 Enter runway: SouthWest
-Flight jetBlue856 is now waiting for takeoff on runway SouthWest.
+Boston 1
+Flight jetBlue856 is now waiting for clearance on runway SouthWest.
 
 Make your selection now: 1
 Enter flight number: AmericaWest691
 Enter destination: San Francisco
 Enter runway: West
-Flight AmericaWest691 is now waiting for takeoff on runway West.
+Boston -17
+Flight AmericaWest691 is now waiting for clearance on runway West.
 
 Make your selection now: 6
 These planes are waiting to takeoff from runway NorthEast:
-Flight British909 to London.
-Flight Delta204 to Chicago.
 Flight Continental339 to Montreal.
 
 These planes are waiting to takeoff from runway SouthWest:
 Flight jetBlue856 to Atlanta.
 
 These planes are waiting to takeoff from runway West:
-Flight American493 to Seattle.
 Flight AmericaWest691 to San Francisco.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight USAir705 to Boston.
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
 
 Make your selection now: 8
 2 takeoffs have occurred.
@@ -272,24 +304,22 @@ East was added.
 
 Make your selection now: 6
 These planes are waiting to takeoff from runway NorthEast:
-Flight British909 to London.
-Flight Delta204 to Chicago.
 Flight Continental339 to Montreal.
 
 These planes are waiting to takeoff from runway SouthWest:
 Flight jetBlue856 to Atlanta.
 
 These planes are waiting to takeoff from runway West:
-Flight American493 to Seattle.
 Flight AmericaWest691 to San Francisco.
 
 No planes are waiting to takeoff from runway East.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight USAir705 to Boston.
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
 
 Make your selection now: 8
 2 takeoffs have occurred.
@@ -298,24 +328,25 @@ Make your selection now: 1
 Enter flight number: Lufthansa581
 Enter destination: Muenchen
 Enter runway: East
-Flight Lufthansa581 is now waiting for takeoff on runway East.
+Boston -11
+Flight Lufthansa581 is now waiting for clearance on runway East.
 
 Make your selection now: 1
 Enter flight number: Alitalia576
 Enter destination: Rome
 Enter runway: East
-Flight Alitalia576 is now waiting for takeoff on runway East.
+Boston -16
+Flight Alitalia576 is now waiting for clearance on runway East.
 
 Make your selection now: 1
 Enter flight number: Continental304
 Enter destination: Miami
 Enter runway: SouthWest
-Flight Continental304 is now waiting for takeoff on runway SouthWest.
+Boston -11
+Flight Continental304 is now waiting for clearance on runway SouthWest.
 
 Make your selection now: 6
 These planes are waiting to takeoff from runway NorthEast:
-Flight British909 to London.
-Flight Delta204 to Chicago.
 Flight Continental339 to Montreal.
 
 These planes are waiting to takeoff from runway SouthWest:
@@ -323,7 +354,6 @@ Flight jetBlue856 to Atlanta.
 Flight Continental304 to Miami.
 
 These planes are waiting to takeoff from runway West:
-Flight American493 to Seattle.
 Flight AmericaWest691 to San Francisco.
 
 These planes are waiting to takeoff from runway East:
@@ -332,28 +362,26 @@ Flight Alitalia576 to Rome.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight USAir705 to Boston.
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
 
 Make your selection now: 8
 2 takeoffs have occurred.
 
 Make your selection now: 2
-Is Flight British909 to London. clear for takeoff(Y/N): Y
-British909 has taken off from runway NorthEast.
+Is Flight Continental339 to Montreal. clear for takeoff(Y/N): Y
+Continental339 has taken off from runway NorthEast.
 
 Make your selection now: 6
-These planes are waiting to takeoff from runway NorthEast:
-Flight Delta204 to Chicago.
-Flight Continental339 to Montreal.
+No planes are waiting to takeoff from runway NorthEast.
 
 These planes are waiting to takeoff from runway SouthWest:
 Flight jetBlue856 to Atlanta.
 Flight Continental304 to Miami.
 
 These planes are waiting to takeoff from runway West:
-Flight American493 to Seattle.
 Flight AmericaWest691 to San Francisco.
 
 These planes are waiting to takeoff from runway East:
@@ -362,28 +390,22 @@ Flight Alitalia576 to Rome.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight USAir705 to Boston.
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
 
 Make your selection now: 8
 3 takeoffs have occurred.
 
-Make your selection now: 3
-Enter the the flight number: USAir705
-
 Make your selection now: 6
-These planes are waiting to takeoff from runway NorthEast:
-Flight Delta204 to Chicago.
-Flight Continental339 to Montreal.
-Flight USAir705 to Boston.
+No planes are waiting to takeoff from runway NorthEast.
 
 These planes are waiting to takeoff from runway SouthWest:
 Flight jetBlue856 to Atlanta.
 Flight Continental304 to Miami.
 
 These planes are waiting to takeoff from runway West:
-Flight American493 to Seattle.
 Flight AmericaWest691 to San Francisco.
 
 These planes are waiting to takeoff from runway East:
@@ -392,8 +414,10 @@ Flight Alitalia576 to Rome.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
 
 Make your selection now: 8
 3 takeoffs have occurred.
@@ -403,16 +427,12 @@ Is Flight jetBlue856 to Atlanta. clear for takeoff(Y/N): Y
 jetBlue856 has taken off from runway SouthWest.
 
 Make your selection now: 6
-These planes are waiting to takeoff from runway NorthEast:
-Flight Delta204 to Chicago.
-Flight Continental339 to Montreal.
-Flight USAir705 to Boston.
+No planes are waiting to takeoff from runway NorthEast.
 
 These planes are waiting to takeoff from runway SouthWest:
 Flight Continental304 to Miami.
 
 These planes are waiting to takeoff from runway West:
-Flight American493 to Seattle.
 Flight AmericaWest691 to San Francisco.
 
 These planes are waiting to takeoff from runway East:
@@ -421,37 +441,34 @@ Flight Alitalia576 to Rome.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
 
 Make your selection now: 8
 4 takeoffs have occurred.
 
 Make your selection now: 2
-Is Flight American493 to Seattle. clear for takeoff(Y/N): Y
-American493 has taken off from runway West.
+Is Flight AmericaWest691 to San Francisco. clear for takeoff(Y/N): Y
+AmericaWest691 has taken off from runway West.
 
 Make your selection now: 5
 Enter the name of the runway to close: North
 Runway does not exist.
 Enter the name of the runway to close: West
 West
-Enter new runway for AmericaWest691: West
+Enter new runway for USAir305: West
 This is the runway that will close.
-Enter new runway for AmericaWest691: North
+Enter new runway for USAir305: North
 No such runway.
-Enter new runway for AmericaWest691: NorthEast
-AmericaWest691 is now assigned to runway NorthEast.
-Enter new runway for United954: SouthWest
-United954 is now assigned to runway SouthWest
+Enter new runway for USAir305: NorthEast
+USAir305 is now assigned to runway NorthEast
 West has been closed.
 
+Make your selection now: For input string: "SouthWest"
 Make your selection now: 6
-These planes are waiting to takeoff from runway NorthEast:
-Flight Delta204 to Chicago.
-Flight Continental339 to Montreal.
-Flight USAir705 to Boston.
-Flight AmericaWest691 to San Francisco.
+No planes are waiting to takeoff from runway NorthEast.
 
 These planes are waiting to takeoff from runway SouthWest:
 Flight Continental304 to Miami.
@@ -462,27 +479,19 @@ Flight Alitalia576 to Rome.
 
 Make your selection now: 7
 These flights are waiting for clearance:
-Flight United954 to Pittsburgh.
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
 
 Make your selection now: 8
 5 takeoffs have occurred.
 
-Make your selection now: 3
-Enter the the flight number: United953
-United953 is not waiting for clearance.
-Enter the the flight number: United954
-
 Make your selection now: 6
-These planes are waiting to takeoff from runway NorthEast:
-Flight Delta204 to Chicago.
-Flight Continental339 to Montreal.
-Flight USAir705 to Boston.
-Flight AmericaWest691 to San Francisco.
+No planes are waiting to takeoff from runway NorthEast.
 
 These planes are waiting to takeoff from runway SouthWest:
 Flight Continental304 to Miami.
-Flight United954 to Pittsburgh.
 
 These planes are waiting to takeoff from runway East:
 Flight Lufthansa581 to Muenchen.
@@ -490,10 +499,16 @@ Flight Alitalia576 to Rome.
 
 Make your selection now: 7
 These flights are waiting for clearance:
+Flight British909 to Boston.
+Flight United572 to Fort Lauderdale.
 Flight AirFrance212 to Paris.
+Flight USAir305 to San Diego.
 
 Make your selection now: 8
 5 takeoffs have occurred.
+
+Make your selection now: 11
+2 landings have occurred.
 
 Make your selection now: 0
 
