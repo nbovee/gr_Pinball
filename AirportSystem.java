@@ -7,7 +7,7 @@ public class AirportSystem
     private boolean allowLanding;
     private int takeoffs;
     private int landings;
-    private int nextRunway; //THIS COULD BE BEST SERVED WITH AN INTERATOR IF POSSIBLE?
+    private int nextRunway;
 
     public AirportSystem(String name)
     {
@@ -62,6 +62,24 @@ public class AirportSystem
         return result;
     }
 
+    public boolean waitValid(String flightName)
+    {
+        return (checkWaiting(flightName) < 0) ? false : true;
+    }
+
+    private int checkWaiting(String flightName)
+    {
+        int result = -1;
+        for(int i = 0; i < waiting.size() && result < 0; i++)
+        {
+            if(waiting.get(i).getFlightNumber().compareTo(flightName) == 0)
+            {
+                result = i;
+            }
+        }
+        return result;
+    }
+
     public void addRunway(String runName)
     {
         int found = checkRunway(runName);
@@ -108,9 +126,32 @@ public class AirportSystem
         }
     }
 
-    private Runway peekRunway()
+    private Runway peekNextActionableRunway(boolean isTakeoff)
     {
-        return runways.get(nextRunway);
+        Runway result = null;
+        boolean empty = true;
+        int count = nextRunway;
+        while(empty == true && count < runways.size()+nextRunway)
+        {
+            result = runways.get(count);
+            if(isTakeoff == true)
+            {
+                empty = result.noDepartures();
+            }
+            else
+            {
+                empty = result.noArrivals();
+            }
+            count++;
+        }
+        if(empty == false)
+        {
+            return result;
+        }
+        else
+        {
+            throw new AirportException("No available planes on any runway.");
+        }
     }
 
     private Runway nextActionableRunway(boolean isTakeoff) throws AirportException
@@ -148,11 +189,11 @@ public class AirportSystem
             if(isTakeoff == true)
             {
 
-                temp =  peekRunway().peekDepartures();
+                temp =  peekNextActionableRunway(isTakeoff).peekDepartures();
             }
             else
             {
-                temp =  peekRunway().peekArrivals();
+                temp =  peekNextActionableRunway(isTakeoff).peekArrivals();
             }
         }
         catch(Exception e)
@@ -289,6 +330,7 @@ public class AirportSystem
         {
             sb.append(runways.get(i).listDepartures() + "\n\n");
         }
+        sb.delete(sb.length()-2,sb.length());
         return sb.toString();
     }
 
@@ -300,6 +342,7 @@ public class AirportSystem
         {
             sb.append(runways.get(i).listArrivals() + "\n\n");
         }
+        sb.delete(sb.length()-2,sb.length());
         return sb.toString();
     }
 
@@ -307,11 +350,19 @@ public class AirportSystem
     {
         StringBuilder sb = new StringBuilder();
         int num = waiting.size();
-        sb.append("Waiting List: ");
-        for(int i = 0; i<num; i++)
+        if(num == 0)
         {
-            sb.append(waiting.get(i) + "\n\n");
+            return "No flights are waiting for clearance.";
         }
-        return sb.toString();
+        else
+        {
+            sb.append("These flights are waiting for clearance:\n");
+            for(int i = 0; i<num; i++)
+            {
+                sb.append(waiting.get(i) + "\n");
+            }
+            sb.delete(sb.length()-1,sb.length());
+            return sb.toString();
+        }
     }
 }

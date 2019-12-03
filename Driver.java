@@ -9,7 +9,7 @@ public class Driver
     {
         try {
             System.out.println("Initializing Airport");
-            System.out.print("Enter Airport name: ");
+            //System.out.print("Enter Airport name: ");
             // String name = stdin.readLine();
             // System.out.println(name);
             airport = new AirportSystem("airport");
@@ -125,6 +125,14 @@ public class Driver
         System.out.println(input);
         boolean allow = (input.compareTo("Y") == 0 ) ? true : false;
         airport.processPlane(true,allow);
+        if(allow ==true)
+        {
+            System.out.println(temp.getFlightNumber() + " has taken off from runway " + temp.getRunway() + ".");
+        }
+        else
+        {
+            System.out.println(temp.getFlightNumber() + " has been denied clearance.");
+        }
     }
 
     static public void landing() throws AirportException, Exception
@@ -139,12 +147,22 @@ public class Driver
 
     static public void reenter() throws AirportException, Exception
     {
-        //CHECK IF WAITING ISEMPTY
         if(airport.waitIsEmpty() != true)
         {
-            System.out.print("Enter the the flight number: ");
-            String toAdd = stdin.readLine();
-            System.out.println(toAdd);
+            String toAdd;
+            boolean val;
+            do
+            {
+                System.out.print("Enter the the flight number: ");
+                toAdd = stdin.readLine();
+                System.out.println(toAdd);
+                val = airport.waitValid(toAdd);
+                if(val == false)
+                {
+                    System.out.println(toAdd + " is not waiting for clearance.");
+                }
+            }
+            while(val == false);
             airport.reenter(toAdd);
         }
         else
