@@ -31,6 +31,52 @@ public class AirportSystem
         return (checkRunway(runName) < 0) ? false : true;
     }
 
+    public Plane removeRunwayDeparture(String runName) throws AirportException
+    {
+        int check = checkRunway(runName);
+        if(check >= 0)
+        {
+            if(runways.get(check).peekDepartures() != null)
+            {
+                Plane temp = runways.get(check).removeDeparture();
+                activeFlights.remove(checkFlights(temp.getFlightNumber()));
+                return temp;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        else
+            return null;
+    }
+
+    public Plane removeRunwayArrival(String runName) throws AirportException
+    {
+        int check = checkRunway(runName);
+        if(check >= 0)
+        {
+            Plane temp = runways.get(check).removeArrival();
+            activeFlights.remove(checkFlights(temp.getFlightNumber()));
+            return temp;
+        }
+        else
+            return null;
+    }
+
+    public Plane removeWaitingPlane(String runName) throws AirportException
+    {
+        int check = checkWaiting(runName);
+        if(check >= 0)
+        {
+            Plane temp = waiting.get(check);
+            activeFlights.remove(checkFlights(temp.getFlightNumber()));
+            return temp;
+        }
+        else
+            return null;
+    }
+
     private int checkRunway(String runName)
     {
         int result = -1;

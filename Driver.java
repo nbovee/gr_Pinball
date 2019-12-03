@@ -194,11 +194,80 @@ public class Driver
 
     static public void closeRunway() throws AirportException, Exception
     {
-        System.out.print("Enter the name of the runway to close: ");
-        String toRem = stdin.readLine();
+        String toRem;
+        boolean val = true;
+        do
+        {
+            System.out.print("Enter the name of the runway to close: ");
+            toRem = stdin.readLine();
+            System.out.println(toRem);
+            val = airport.runwayValid(toRem);
+            if(val == false)
+            {
+                System.out.println("Runway does not exist.");
+            }
+        }
+        while(val == false);
         System.out.println(toRem);
+
+        Runway run = airport.getRunway(toRem);
+        Plane temp = null;
+        while(run.noDepartures() == false)
+        {
+            temp = airport.removeRunwayDeparture(toRem);
+            String newRun = null;
+            int comp = 0;
+            boolean exists = false;
+            do
+            {
+                System.out.print("Enter new runway for " + temp.getFlightNumber() + ": ");
+                newRun = stdin.readLine();
+                System.out.println(newRun);
+                exists = airport.runwayValid(newRun);
+                comp = newRun.compareTo(toRem);
+                if(comp == 0)
+                {
+                    System.out.println("This is the runway that will close.");
+                }
+                if(exists == false)
+                {
+                    System.out.println("No such runway.");
+                }
+            } while(comp == 0 || exists == false);
+            temp.setRunway(newRun);
+            airport.addPlane(temp);
+            System.out.println(temp.getFlightNumber() + " is now assigned to runway " + newRun);
+        }
+        while(run.noArrivals() == false)
+        {
+            temp = airport.removeRunwayDeparture(toRem);
+            String newRun = null;
+            int comp = 0;
+            boolean exists = false;
+            do
+            {
+                System.out.print("Enter new runway for " + temp.getFlightNumber() + ": ");
+                newRun = stdin.readLine();
+                System.out.println(newRun);
+                exists = airport.runwayValid(newRun);
+                comp = newRun.compareTo(toRem);
+                if(comp == 0)
+                {
+                    System.out.println("This is the runway that will close.");
+                }
+                if(exists == false)
+                {
+                    System.out.println("No such runway.");
+                }
+            } while(comp == 0 || exists == false);
+            temp.setRunway(newRun);
+            airport.addPlane(temp);
+            System.out.println(temp.getFlightNumber() + " is now assigned to runway " + newRun);
+        }
+
+
         airport.removeRunway(toRem);
-        System.out.println(toRem + " was removed.");
+        System.out.println(toRem + " has been closed.");
 
     }
 
