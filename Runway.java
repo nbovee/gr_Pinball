@@ -1,11 +1,11 @@
 /*
  * Purpose: Data Structure and Algorithms Project: Runway for planes to take off of or land on.
  * Status: Complete and thoroughly tested
- * Last update: 12/2/19
+ * Last update: 12/3/19
  * Submitted: 12/03/19
  * Comment: test suite and sample run attached
  * @author: Devyn Melendez
- * @version: 2019.12.02
+ * @version: 2019.12.03
  */
 
 public class Runway
@@ -160,8 +160,17 @@ public class Runway
      */
     public String listDepartures()
     {
-        StringBuilder str = new StringBuilder("These planes are waiting for takeoff on runway " + name + ":\n");
-        str.append(departures.toString());
+        StringBuilder str = new StringBuilder();
+	if(departures.isEmpty())
+	{
+		str.append("No ");
+	}
+	else
+	{
+		str.append("these ");
+	}
+        str.append("planes are waiting for takeoff on runway " + name + ":");
+        str.append("\n" + arrivals.toString());
         return str.toString();
     }
 
@@ -171,8 +180,17 @@ public class Runway
      */
     public String listArrivals()
     {
-        StringBuilder str = new StringBuilder("These planes are waiting to land on runway " + name + ":\n");
-        str.append(arrivals.toString());
+        StringBuilder str = new StringBuilder();
+	if(arrivals.isEmpty())
+	{
+		str.append("No ");
+	}
+	else
+	{
+		str.append("these ");
+	}
+        str.append("planes are waiting to land on runway " + name + ":");
+        str.append("\n" + arrivals.toString());
         return str.toString();
     }
 
