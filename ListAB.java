@@ -1,11 +1,11 @@
 /*
- * Purpose: Data Structure and Algorithms Lab 05 Problem 4
+ * Purpose: Data Structure and Algorithms Project: ListAB Class
  * Status: Complete and thoroughly tested
- * Last update: 10/08/19
- * Submitted:  10/08/19
- * Comment: not fully tested
- * @author: Nick Bovee
- * @version: 2019.10.08
+ * Last update: 12/03/19
+ * Submitted:  12/03/19
+ * Comment: test suite and sample run attached
+ * @author: Nicholas Bovee
+ * @version: 2019.12.03
  */
 
 
@@ -24,17 +24,28 @@ public class ListAB<E> implements ListInterface<E>
         items = (E[]) new Object[MAX_LIST];
         numItems = 0;
     }  // end default constructor
-
+    
+	/**
+     * Returns if the List is empty.
+     * @return boolean The state of the list.
+     */
     public boolean isEmpty()
     {
         return (numItems == 0);
     } // end isEmpty
 
+	/**
+     * Returns the current size of the list.
+     * @return s The size of the list.
+     */
     public int size()
     {
         return numItems;
     }  // end size
 
+	/**
+     * Clears the List.
+     */
     public void removeAll()
     {
         // Creates a new array; marks old array for
@@ -43,6 +54,11 @@ public class ListAB<E> implements ListInterface<E>
         numItems = 0;
     } // end removeAll
 
+	/**
+     * Adds an item to the list.
+     * @param index The index to add the new item too
+     * @param item The item to add to this location
+     */
     public void add(int index, E item)
     throws  ListIndexOutOfBoundsException
     {
@@ -71,6 +87,11 @@ public class ListAB<E> implements ListInterface<E>
         }  // end if
     } //end add
 
+	/**
+     * Returns an item from the list.
+     * @param index the index to retrieve an item from.
+     * @return item the item in the given index.
+     */
     @SuppressWarnings("unchecked")
     public E get(int index)
     throws ListIndexOutOfBoundsException
@@ -87,6 +108,10 @@ public class ListAB<E> implements ListInterface<E>
         }  // end if
     } // end get
 
+	/**
+     * Removes an item from the list.
+     * @param index the index to remove.
+     */
     public void remove(int index)
     throws ListIndexOutOfBoundsException
     {

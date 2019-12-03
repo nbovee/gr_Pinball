@@ -1,3 +1,12 @@
+/*
+ * Purpose: Data Structure and Algorithms Project: AirportSystem Class
+ * Status: Complete and thoroughly tested
+ * Last update: 12/03/19
+ * Submitted:  12/03/19
+ * Comment: test suite and sample run attached
+ * @author: Nicholas Bovee
+ * @version: 2019.12.03
+ */
 public class AirportSystem
 {
     private String name;
@@ -9,11 +18,11 @@ public class AirportSystem
     private int landings;
     private int nextRunway;
 
-    public AirportSystem(String name)
-    {
-        this(name, false);
-    }
-
+    /**
+     * Initializes the AirportSystem.
+     * @param name name of the airport, used for checking if a flight will be landing.
+     * @param enable boolean to see if landings will be enabled. Currently unused.
+     */
     public AirportSystem(String name, boolean enable)
     {
         this.name = name;
@@ -26,11 +35,39 @@ public class AirportSystem
         nextRunway = 0;
     }
 
+    /**
+     * Checks if the named runway exists in the AirportSystem.
+     * @param runName name of the runway to find.
+     * @return i integer of -1 to runways.size(), depending on result.
+     */
+    private int checkRunway(String runName)
+    {
+        int result = -1;
+        for(int i = 0; i < runways.size() && result < 0; i++)
+        {
+            if(runways.get(i).getName().compareTo(runName) == 0)
+            {
+                result = i;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks if the named Runway exists in the AirportSystem.
+     * @param runName name of the Runway to find.
+     * @return boolean of if the Runway exists.
+     */
     public boolean runwayValid(String runName)
     {
         return (checkRunway(runName) < 0) ? false : true;
     }
 
+    /**
+     * Removes the next Departure from a Runway of runName, and also removes it from the log of activeFlight numbers.
+     * @param runName name of the Runway to find.
+     * @return p the next plane in the departure Queue.
+     */
     public Plane removeRunwayDeparture(String runName) throws AirportException
     {
         int check = checkRunway(runName);
@@ -51,6 +88,11 @@ public class AirportSystem
             return null;
     }
 
+    /**
+     * Removes the next Arrival from a Runway of runName, and also removes it from the log of activeFlight numbers.
+     * @param runName name of the Runway to find.
+     * @return p the next plane in the arrival Queue.
+     */
     public Plane removeRunwayArrival(String runName) throws AirportException
     {
         int check = checkRunway(runName);
@@ -64,40 +106,46 @@ public class AirportSystem
             return null;
     }
 
-    public Plane peekWaitingPlane(String runName) throws AirportException
-    {
-        int check = checkWaiting(runName);
-        if(check >= 0)
-        {
-            Plane temp = waiting.get(check);
-            return temp;
-        }
-        else
-            return null;
-    }
+//    /**
+//     * Returns the next plane in the waitlist, nondestructively.
+//     * @param runName name of the Runway to find.
+//     * @return p the next plane in the waiting list.
+//     */
+//    public Plane peekWaitingPlane(String runName) throws AirportException
+//    {
+//        int check = checkWaiting(runName);
+//        if(check >= 0)
+//        {
+//            Plane temp = waiting.get(check);
+//            return temp;
+//        }
+//        else
+//            return null;
+//    }
 
-    private int checkRunway(String runName)
-    {
-        int result = -1;
-        for(int i = 0; i < runways.size() && result < 0; i++)
-        {
-            if(runways.get(i).getName().compareTo(runName) == 0)
-            {
-                result = i;
-            }
-        }
-        return result;
-    }
-
+    /**
+     * Returns if the waiting List is empty.
+     * @return b the state of the waiting List.
+     */
     public boolean waitIsEmpty()
     {
         return waiting.isEmpty();
     }
 
+    /**
+     * Returns the waitlist for direct modification (required by Driver.removeRunway().)
+     * @return l the List of all currently waiting Planes.
+     */
     public ListRAB<Plane> getWaiting()
     {
         return waiting;
     }
+    
+    /**
+     * Returns the index of the flightNumber in the tracking List, or -1.
+     * @param flightName a String of the flightNumber being searched for.
+     * @return i the index of the flightNumber, or -1.
+     */
     private int checkFlights(String flightName)
     {
         int result = -1;
@@ -110,12 +158,12 @@ public class AirportSystem
         }
         return result;
     }
-
-    public boolean waitValid(String flightName)
-    {
-        return (checkWaiting(flightName) < 0) ? false : true;
-    }
-
+    
+    /**
+     * Returns the index of the flightNumber in the waiting List, or -1.
+     * @param flightName a String of the flightNumber being searched for.
+     * @return i the index of the flightNumber, or -1.
+     */
     private int checkWaiting(String flightName)
     {
         int result = -1;
@@ -128,7 +176,21 @@ public class AirportSystem
         }
         return result;
     }
+    
+    /**
+     * Returns whether the flightNumber is in the waiting List.
+     * @param flightName a String of the flightNumber being searched for.
+     * @return b a boolean of whether the flightName is present in the waiting List.
+     */
+    public boolean waitValid(String flightName)
+    {
+        return (checkWaiting(flightName) < 0) ? false : true;
+    }
 
+    /**
+     * Adds a Runway of name runName.
+     * @param runName the name of the new Runway to make.
+     */
     public void addRunway(String runName)
     {
         int found = checkRunway(runName);
@@ -142,6 +204,10 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Removes a Runway of name runName.
+     * @param runName the name of the Runway to remove.
+     */
     public void removeRunway(String runName) throws AirportException
     {
         int found = checkRunway(runName);
@@ -155,13 +221,22 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Returns the next Runway in the List, arranged circularly.
+     * @return r the next Runway allowed to process a plane.
+     */
     private Runway nextRunway()
     {
         Runway result = runways.get(nextRunway);
         nextRunway = ++nextRunway%runways.size();
         return result;
     }
-
+    
+    /**
+     * Returns the specified Runway for direct modification (required by Driver.removeRunway().)
+     * @param runName the name of the runway to find.
+     * @return the Runway identified.
+     */
     public Runway getRunway(String runName)
     {
         int found = checkRunway(runName);
@@ -175,6 +250,11 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Returns the next Runway allowed to operate, without incrementing the counter.
+     * @param isTakeoff boolean selecting if we are searching for a takeoff or landing operation.
+     * @return the Runway identified.
+     */
     private Runway peekNextActionableRunway(boolean isTakeoff)
     {
         Runway result = null;
@@ -203,6 +283,11 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Returns the next Runway allowed to operate, and increments the counter.
+     * @param isTakeoff boolean selecting if we are searching for a takeoff or landing operation.
+     * @return the Runway identified.
+     */
     private Runway nextActionableRunway(boolean isTakeoff) throws AirportException
     {
         Runway result = null;
@@ -231,6 +316,13 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Returns the next Plane that will be processed, without incrementing the counter.
+     * @param isTakeoff boolean selecting if we are searching for a takeoff or landing operation.
+     * @return the Plane identified.
+     * @throws AirportException
+     * @throws Exception 
+     */
     public Plane peekNextPlane(boolean isTakeoff) throws AirportException, Exception
     {
         Plane temp = null;
@@ -258,6 +350,13 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Returns the next Plane that will be processed, and increments the counter.
+     * @param isTakeoff boolean selecting if we are searching for a takeoff or landing operation.
+     * @return the Plane identified.
+     * @throws AirportException
+     * @throws Exception 
+     */
     public Plane getNextPlane(boolean isTakeoff) throws AirportException
     {
         Runway result = nextActionableRunway(isTakeoff);
@@ -272,6 +371,12 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Moves the designated flightNum from the waiting List to its Runway.
+     * @param flightNum the name of the flight to add.
+     * @throws AirportException
+     * @throws Exception 
+     */
     public void reenter(String flightNum) throws AirportException, Exception
     {
         Plane temp = null;
@@ -297,6 +402,12 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Adds the designated Plane to its Runway.
+     * @param airplane the Plane to add.
+     * @throws AirportException
+     * @throws Exception 
+     */
     public void addPlane(Plane airplane) throws AirportException, Exception
     {
         String fn = airplane.getFlightNumber();
@@ -328,6 +439,13 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Removes the designated Plane from its Runway, either to delete or to add to the waitlist.
+     * @param isTakeoff is this a departure or arrival.
+     * @param allow will it complete the action or move to the waitlist.
+     * @throws AirportException
+     * @throws Exception 
+     */
     public void processPlane(boolean isTakeoff, boolean allow) throws AirportException
     {
         Plane temp = getNextPlane(isTakeoff);
@@ -356,21 +474,37 @@ public class AirportSystem
         }
     }
 
+    /**
+     * Returns the airport name.
+     * @return the String of the airport name
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     * Returns the number of takeoffs.
+     * @return the int of total takeoffs
+     */
     public int getTakeoffs()
     {
         return takeoffs;
     }
 
+    /**
+     * Returns the number of landings.
+     * @return the int of total landings
+     */
     public int getLandings()
     {
         return landings;
     }
 
+    /**
+     * Returns info about the Planes trying to take off.
+     * @return the String of each Plane trying to take off, by Runway
+     */
     public String displayTakeoff()
     {
         StringBuilder sb = new StringBuilder();
@@ -383,6 +517,10 @@ public class AirportSystem
         return sb.toString();
     }
 
+    /**
+     * Returns info about the Planes trying to land.
+     * @return the String of each Plane trying to land, by Runway
+     */
     public String displayLanding()
     {
         StringBuilder sb = new StringBuilder();
@@ -395,6 +533,10 @@ public class AirportSystem
         return sb.toString();
     }
 
+    /**
+     * Returns info about the Planes waiting to be sent back to a Runway.
+     * @return the String of each Plane in the waiting List
+     */
     public String displayWaiting()
     {
         StringBuilder sb = new StringBuilder();

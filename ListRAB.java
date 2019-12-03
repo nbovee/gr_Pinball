@@ -1,14 +1,12 @@
 /*
- * Purpose: Data Structure and Algorithms Lab 02 Problem 1
+ * Purpose: Data Structure and Algorithms Project: ListRAB Class
  * Status: Complete and thoroughly tested
- * Last update: 09/23/19
- * Submitted:  09/17/19
+ * Last update: 12/03/19
+ * Submitted:  12/03/19
  * Comment: test suite and sample run attached
- * @author: Nick Bovee
- * @version: 2019.09.23
+ * @author: Nicholas Bovee
+ * @version: 2019.12.03
  */
-
-
 import java.util.*;
 
 public class ListRAB<E> extends ListAB<E> implements ListInterface<E>
@@ -20,6 +18,11 @@ public class ListRAB<E> extends ListAB<E> implements ListInterface<E>
         super();
     }
 
+	/**
+     * Adds an item to the list.
+     * @param index The index to add the new item too
+     * @param item The item to add to this location
+     */
     public void add(int index, E item) throws ListIndexOutOfBoundsException //revised add
     {
         if (index >= 0 && index <= numItems)
@@ -65,6 +68,10 @@ public class ListRAB<E> extends ListAB<E> implements ListInterface<E>
         }  // end if
     } //end add
 
+	/**
+     * Returns a String representation of the List.
+     * @return s the String representation of the list.
+     */
     public String toString()
     {
         StringBuilder builder = new StringBuilder();
@@ -75,23 +82,18 @@ public class ListRAB<E> extends ListAB<E> implements ListInterface<E>
         return builder.toString();
     }
 
+	/**
+     * Reverses the order of the list.
+     */
     public void reverse()
     {
         //below is the most efficient reverse method tested. See conclusions.
         reverseMemDirect();
     }
 
-//private void reverseIPDirect()
-//{
-//   for(int i = 0; i < numItems/2; i++)
-//  {
-//     Object temp = items[i];
-//    items[i] = items[numItems-i-1];
-//   items[numItems-i-1] = temp;
-// // assignments += 3;//3 values
-//}
-//}
-
+	/**
+     * Specific implementation of List reversal.
+     */
     private void reverseMemDirect()
     {
         Object[] newItems = (E[]) new Object[numItems];
@@ -103,6 +105,9 @@ public class ListRAB<E> extends ListAB<E> implements ListInterface<E>
         items = newItems;
     }
 
+	/**
+     * Resizes the list to accommodate more items. Does not currently reduce size.
+     */
     private void resize()
     {
         int newSize =(int)(items.length * 3 / 2);
