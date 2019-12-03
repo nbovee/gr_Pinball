@@ -103,20 +103,13 @@ public class QueueCSLS<T> implements QueueInterface<T> {
         {
             curr = curr.getNext();
             str.append(curr.getItem());
-            str.append(" ");
-            curr = curr.getNext();
-
-            while(curr != tail.getNext())
+            while(curr != tail)
             {
-                str.append(curr.getItem());
-                str.append(" ");
-
                 curr = curr.getNext();
+                str.append("\n");
+                str.append(curr.getItem());
             }
-
         }
-
         return str.toString();
     }
-
 }

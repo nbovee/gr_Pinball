@@ -161,16 +161,16 @@ public class Runway
     public String listDepartures()
     {
         StringBuilder str = new StringBuilder();
-	if(departures.isEmpty())
-	{
-		str.append("No ");
-	}
-	else
-	{
-		str.append("these ");
-	}
-        str.append("planes are waiting for takeoff on runway " + name + ":");
-        str.append("\n" + arrivals.toString());
+        if(departures.isEmpty())
+        {
+            str.append("No planes are waiting to takeoff from runway " + name + ".");
+        }
+        else
+        {
+            str.append("These planes are waiting to takeoff from runway " + name + ":");
+            str.append("\n");
+            str.append(departures.toString());
+        }
         return str.toString();
     }
 
@@ -181,16 +181,16 @@ public class Runway
     public String listArrivals()
     {
         StringBuilder str = new StringBuilder();
-	if(arrivals.isEmpty())
-	{
-		str.append("No ");
-	}
-	else
-	{
-		str.append("these ");
-	}
-        str.append("planes are waiting to land on runway " + name + ":");
-        str.append("\n" + arrivals.toString());
+        if(arrivals.isEmpty())
+        {
+            str.append("No planes are waiting to land on runway " + name + ".");
+        }
+        else
+        {
+            str.append("These planes are waiting to land on runway " + name + ":");
+            str.append("\n");
+            str.append(arrivals.toString());
+        }
         return str.toString();
     }
 

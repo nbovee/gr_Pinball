@@ -87,6 +87,8 @@ public class Plane
      */
     public String toString()
     {
-        return "Flight" + flightNumber + " to " + destination + ".";
+        StringBuilder str = new StringBuilder("Flight " + flightNumber + " to " + destination + ".");
+        return str.toString();
     }
+
 }

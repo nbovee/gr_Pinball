@@ -28,7 +28,7 @@ public class AirportSystem
 
     public boolean runwayValid(String runName)
     {
-	return (checkRunway(runName) < 0) ? false : true;
+        return (checkRunway(runName) < 0) ? false : true;
     }
 
     private int checkRunway(String runName)
@@ -46,7 +46,7 @@ public class AirportSystem
 
     public boolean waitIsEmpty()
     {
-	return waiting.isEmpty();
+        return waiting.isEmpty();
     }
 
     private int checkFlights(String flightName)
@@ -80,7 +80,7 @@ public class AirportSystem
         int found = checkRunway(runName);
         if(found >= 0)
         {
-		runways.remove(found);
+            runways.remove(found);
         }
         else
         {
@@ -97,15 +97,15 @@ public class AirportSystem
 
     public Runway getRunway(String runName)
     {
-	int found = checkRunway(runName);
-		if(found >=0)
-		{
-			return runways.get(found);
-		}
-		else
-		{
-			throw new AirportException("Runway not found.");
-		}
+        int found = checkRunway(runName);
+        if(found >=0)
+        {
+            return runways.get(found);
+        }
+        else
+        {
+            throw new AirportException("Runway not found.");
+        }
     }
 
     private Runway peekRunway()
@@ -129,7 +129,7 @@ public class AirportSystem
             {
                 empty = result.noArrivals();
             }
-	    count++;
+            count++;
         }
         if(empty == false)
         {
@@ -143,29 +143,29 @@ public class AirportSystem
 
     public Plane peekNextPlane(boolean isTakeoff) throws AirportException, Exception
     {
-	    Plane temp = null;
-	    try{
-	if(isTakeoff == true)
-	{
-		
-		temp =  peekRunway().peekDepartures();
-	}
-	else
-	{
-		temp =  peekRunway().peekArrivals();
-	}
-	    }
-	    catch(Exception e)
-	    {
-	    }
-	if(temp != null)
-	{
-		return temp;
-	}
-	else
-	{
-		throw new AirportException("No plane on any runway.");
-	}
+        Plane temp = null;
+        try {
+            if(isTakeoff == true)
+            {
+
+                temp =  peekRunway().peekDepartures();
+            }
+            else
+            {
+                temp =  peekRunway().peekArrivals();
+            }
+        }
+        catch(Exception e)
+        {
+        }
+        if(temp != null)
+        {
+            return temp;
+        }
+        else
+        {
+            throw new AirportException("No plane on any runway.");
+        }
     }
 
     public Plane getNextPlane(boolean isTakeoff) throws AirportException
@@ -184,27 +184,27 @@ public class AirportSystem
 
     public void reenter(String flightNum) throws AirportException, Exception
     {
-	Plane temp = null;
-	int num = waiting.size();
-	int index = -1;
-	for(int i = 0; i< num && index < 0; i++)
-	{
-		if(waiting.get(i).getFlightNumber().compareTo(flightNum) == 0)
-		{
-			index = i;
-			temp = waiting.get(i);
-		}
-	}
-	if(index >= 0)
-	{
-		waiting.remove(index);
-		activeFlights.remove(checkFlights(flightNum));
-		addPlane(temp);
-	}
-	else
-	{
-		throw new AirportException("Plane specified not found in wait list.");
-	}
+        Plane temp = null;
+        int num = waiting.size();
+        int index = -1;
+        for(int i = 0; i< num && index < 0; i++)
+        {
+            if(waiting.get(i).getFlightNumber().compareTo(flightNum) == 0)
+            {
+                index = i;
+                temp = waiting.get(i);
+            }
+        }
+        if(index >= 0)
+        {
+            waiting.remove(index);
+            activeFlights.remove(checkFlights(flightNum));
+            addPlane(temp);
+        }
+        else
+        {
+            throw new AirportException("Plane specified not found in wait list.");
+        }
     }
 
     public void addPlane(Plane airplane) throws AirportException, Exception
@@ -217,7 +217,7 @@ public class AirportSystem
             if(run >= 0)
             {
                 activeFlights.add(activeFlights.size(),fn);
-		Runway temp = runways.get(run);
+                Runway temp = runways.get(run);
                 if(airplane.getDestination().compareTo(this.name) == 0)
                 {
                     temp.addArrival(airplane);
@@ -227,10 +227,10 @@ public class AirportSystem
                     temp.addDeparture(airplane);
                 }
             }
-	    else
-	    {
-		throw new AirportException("Runway not found.");
-	    }
+            else
+            {
+                throw new AirportException("Runway not found.");
+            }
         }
         else
         {
@@ -249,7 +249,7 @@ public class AirportSystem
             }
             else
             {
-		    activeFlights.remove(checkFlights(temp.getFlightNumber()));
+                activeFlights.remove(checkFlights(temp.getFlightNumber()));
                 if(isTakeoff == true)
                 {
                     takeoffs++;
@@ -287,7 +287,7 @@ public class AirportSystem
         int num = runways.size();
         for(int i = 0; i<num; i++)
         {
-            sb.append(runways.get(i).listDepartures() + "\n");
+            sb.append(runways.get(i).listDepartures() + "\n\n");
         }
         return sb.toString();
     }
@@ -298,7 +298,7 @@ public class AirportSystem
         int num = runways.size();
         for(int i = 0; i<num; i++)
         {
-            sb.append(runways.get(i).listArrivals() + "\n");
+            sb.append(runways.get(i).listArrivals() + "\n\n");
         }
         return sb.toString();
     }
@@ -307,10 +307,10 @@ public class AirportSystem
     {
         StringBuilder sb = new StringBuilder();
         int num = waiting.size();
-	sb.append("Waiting List: ");
+        sb.append("Waiting List: ");
         for(int i = 0; i<num; i++)
         {
-            sb.append(waiting.get(i) + "\n");
+            sb.append(waiting.get(i) + "\n\n");
         }
         return sb.toString();
     }
