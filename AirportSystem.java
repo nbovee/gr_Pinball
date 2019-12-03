@@ -67,6 +67,7 @@ public class AirportSystem
      * Removes the next Departure from a Runway of runName, and also removes it from the log of activeFlight numbers.
      * @param runName name of the Runway to find.
      * @return p the next plane in the departure Queue.
+     * @throws AirportException
      */
     public Plane removeRunwayDeparture(String runName) throws AirportException
     {
@@ -92,6 +93,7 @@ public class AirportSystem
      * Removes the next Arrival from a Runway of runName, and also removes it from the log of activeFlight numbers.
      * @param runName name of the Runway to find.
      * @return p the next plane in the arrival Queue.
+     * @throws AirportException
      */
     public Plane removeRunwayArrival(String runName) throws AirportException
     {
@@ -207,6 +209,7 @@ public class AirportSystem
     /**
      * Removes a Runway of name runName.
      * @param runName the name of the Runway to remove.
+     * @throws AirportException 
      */
     public void removeRunway(String runName) throws AirportException
     {
@@ -287,6 +290,7 @@ public class AirportSystem
      * Returns the next Runway allowed to operate, and increments the counter.
      * @param isTakeoff boolean selecting if we are searching for a takeoff or landing operation.
      * @return the Runway identified.
+     * @throws AirportException
      */
     private Runway nextActionableRunway(boolean isTakeoff) throws AirportException
     {
