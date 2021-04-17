@@ -1,42 +1,56 @@
-# patterned after code from https://github.com/umermansoor/microservices/ as I learn the python/flask framework
-
-from services import root_dir, nice_json
 from flask import Flask
-from werkzeug.exceptions import NotFound
+from flask_restful import Resource, Api, reqparse, abort, marshal, fields
 import json
 
 app = Flask(__name__)
+api = Api(app)
 
-with open("{}/database/decklist.json".format(root_dir()),
-          "r") as f:  # modify this later to accept filepath for unit tests
+with open('config.json', 'w') as f:
+    config = json.load(f)
+
+with open("decklist.json", "r") as f:  # modify this later to accept filepath for unit tests
     deck = json.load(f)
 
-
-@app.route("/", methods=['GET'])
-def hello():
-    return nice_json({
-        "uri": "/",
-        "subresource_uris": {
-            "deck": "/cards",
-            "cards": "/cards/<id>"
-        }
-    })
+# overwrite imported deck for initial testing
 
 
-@app.route("/Deck/<cardid>", methods=['GET'])
-def movie_info(cardid):
-    if cardid not in deck:
-        raise NotFound
-
-    result = deck[cardid]
-    result["uri"] = "/deck/{}".format(cardid)
-
-    return nice_json(result)
+cardFields = {  # there are more but these are what we care about. Also might need to load these differently too?
+    "id": fields.Integer,
+    "name": fields.String,
+    "prices": fields.Integer  # fields.Nested({"usd": fields.String}) #change to val in cents?
+}
 
 
-@app.route("/card", methods=['GET'])
-def card_record():
-    return nice_json(card)
+class Card(Resource):
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument("id", type=int, location="json")
+        self.reqparse.add_argument("name", type=str, location="json")
+        self.reqparse.add_argument("prices", type=int, location="json")
+
+    def get(self, id):
+        card = [card for card in deck if card['id'] == id]
+        if len(card) == 0:
+            abort(404)
+        return {"card": marshal(card[0], cardFields)}
+
+    def put(self, id):
+        card = [card for card in deck if card['id'] == id]
+        if len(card) == 0:
+            abort(404)
+        card = card[0]
+        args = self.reqparse.parse_args()
+        for k, v in args.items():
+            if v is not None:
+                card[k] = v
+        return {"card": marshal(card, cardFields)}
+
+    def delete(self, id):
+        card = [card for card in deck if card['id'] == id]
+        if len(card) == 0:
+            abort(404)
+        deck.remove(card[0])
+        return 201
 
 
 if __name__ == "__main__":
