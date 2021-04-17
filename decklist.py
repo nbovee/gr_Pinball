@@ -11,8 +11,6 @@ with open('config.json', 'r') as f:
 with open("decklist.json", "r") as f:  # modify this later to accept filepath for unit tests
     deck = json.load(f)
 
-# overwrite imported deck for initial testing
-
 
 cardFields = {  # there are more but these are what we care about. Also might need to load these differently too?
     "id": fields.Integer,
