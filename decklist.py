@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 api = Api(app)
 
-with open('config.json', 'w') as f:
+with open('config.json', 'r') as f:
     config = json.load(f)
 
 with open("decklist.json", "r") as f:  # modify this later to accept filepath for unit tests
@@ -17,7 +17,7 @@ with open("decklist.json", "r") as f:  # modify this later to accept filepath fo
 cardFields = {  # there are more but these are what we care about. Also might need to load these differently too?
     "id": fields.Integer,
     "name": fields.String,
-    "prices": fields.Integer  # fields.Nested({"usd": fields.String}) #change to val in cents?
+    "price": fields.Integer  # fields.Nested({"usd": fields.String}) #change to val in cents?
 }
 
 
@@ -26,7 +26,8 @@ class Card(Resource):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument("id", type=int, location="json")
         self.reqparse.add_argument("name", type=str, location="json")
-        self.reqparse.add_argument("prices", type=int, location="json")
+        self.reqparse.add_argument("price", type=int, location="json")
+        super(Card, self).__init__()
 
     def get(self, id):
         card = [card for card in deck if card['id'] == id]
@@ -52,6 +53,30 @@ class Card(Resource):
         deck.remove(card[0])
         return 201
 
+class Deck(Resource):
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument("id", type=int, required=True, help="Card ID is required", location="json")
+        self.reqparse.add_argument("name", type=str, required=True, help="Card Name is required", location="json")
+        self.reqparse.add_argument("price", type=int, required=False, help="Card Price in USD (cents)", location="json")
+
+    def get(self):
+        return{"deck": [marshal(card, cardFields) for card in deck]}
+
+    def post(self):
+        args = self.reqparse.parse_args()
+        card = {
+            "id": deck[-1]['id'] + 1 if len(deck) > 0 else 1,
+            "name": args["name"],
+            "price": args["price"]
+        }
+
+        deck.append(card)
+        return{"card": marshal(card, cardFields)}, 201
+
+
+api.add_resource(Deck, "/decks")
+api.add_resource(Card, "/decks/<int:id>")
 
 if __name__ == "__main__":
-    app.run(port=5001, debug=True)
+    app.run(debug=True)
