@@ -57,6 +57,8 @@ class Deck(Resource):
         self.reqparse.add_argument("id", type=int, required=True, help="Card ID is required", location="json")
         self.reqparse.add_argument("name", type=str, required=True, help="Card Name is required", location="json")
         self.reqparse.add_argument("price", type=int, required=False, help="Card Price in USD (cents)", location="json")
+        self.reqparse.add_argument("qty", type=int, required=True, help="Card Price in USD (cents)", location="json")
+
 
     def get(self):
         return{"deck": [marshal(card, cardFields) for card in deck]}
@@ -66,7 +68,8 @@ class Deck(Resource):
         card = {
             "id": deck[-1]['id'] + 1 if len(deck) > 0 else 1,
             "name": args["name"],
-            "price": args["price"]
+            "price": args["price"],
+            "qty": args["qty"]
         }
 
         deck.append(card)
