@@ -19,19 +19,19 @@ cardFields = {  # there are more but these are what we care about. Also might ne
 }
 
 
-class Card(Resource):
+class Cards(Resource):
     with open(config['cards_location']) as f:
-        cards = json.load(f) #all cards know about each other to avoid collision
+        cards = json.load(f)  # all cards know about each other to avoid collision
 
     def __init__(self):
         # self.reqparse = reqparse.RequestParser()
         # self.reqparse.add_argument("id", type=int, location="json")
         # self.reqparse.add_argument("name", type=str, location="json")
         # self.reqparse.add_argument("price", type=int, location="json")
-        super(Card, self).__init__()
+        super(Cards, self).__init__()
 
-    def inCollection(self, _id):
-        card = Card.cards[_id]
+    def in_collection(self, _id):
+        card = Cards.cards[_id]
         if card is not None:
             return True if card['qty'] > 0 else False
         else:
@@ -41,48 +41,59 @@ class Card(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('id', required=True)
         args = parser.parse_args()
-
-        return {'card': marshal(card, cardFields)}, 200
+        if args['id'] in Cards.cards:
+            card = Cards.cards[args['id']]
+            return {'card': marshal(card, cardFields)}, 200
+        else:
+            abort(404)
 
     def post(self):
         parser = reqparse.RequestParser()
-        parser.reqparse.add_argument('id', required=True)
-        parser.reqparse.add_argument("name", required=True, type=str)
-        parser.reqparse.add_argument("price", required=False, type=int)
-        parser.reqparse.add_argument("qty", required=False, type=int)
+        parser.add_argument('id', required=True)
+        parser.add_argument("name", required=True, type=str)
+        parser.add_argument("qty", required=True, type=int)
         args = parser.parse_args()
-        if Card.cards[args['id']] is not None:
+        if args['id'] in Cards.cards:
             return {
-                       'message': f"'{args['id']}' already exists."
+                       'message': f"Card #{args['id']} already exists."
                    }, 401
         card = {}
         for k, v in args.items():
             if v is not None:
+                print(k)
                 card[k] = v
-        Card.cards['id'] = card
-        return {}, 200
+        Cards.cards[args['id']] = card
+        return "Card added.", 200
+
+    def put(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', required=True)
+        parser.add_argument("name", required=False, type=str)
+        parser.add_argument("qty", required=False, type=int)
+        args = parser.parse_args()
+        if args['id'] not in Cards.cards:
+            return {
+                       'message': f"'{args['id']}' does not exist."
+                   }, 404
+        card = {}
+        for k, v in args.items():
+            if v is not None:
+                Cards.cards[args['id']][k] = v
+        return "Card updated", 200
+
+    def delete(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', required=True)
+        args = parser.parse_args()
+        if args['id'] not in Cards.cards:
+            return {
+                       'message': f"'{args['id']}' does not exist."
+                   }, 404
+        Cards.cards.pop(args['id'])
+        return "Card deleted", 200
 
 
-    # def put(self, id):
-    #     card = [card for card in deck if card['id'] == id]
-    #     if len(card) == 0:
-    #         abort(404)
-    #     card = card[0]
-    #     args = self.reqparse.parse_args()
-    #     for k, v in args.items():
-    #         if v is not None:
-    #             card[k] = v
-    #     return {"card": marshal(card, cardFields)}
-    #
-    # def delete(self, id):
-    #     card = [card for card in deck if card['id'] == id]
-    #     if len(card) == 0:
-    #         abort(404)
-    #     deck.remove(card[0])
-    #     return 201
-
-
-api.add_resource(Card, "/card/")
+api.add_resource(Cards, "/cards")
 
 if __name__ == "__main__":
     app.run(debug=True)
