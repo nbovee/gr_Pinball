@@ -8,41 +8,55 @@ api = Api(app)
 with open('config.json', 'r') as f:
     config = json.load(f)
 
-# with open("decklist.json", "r") as f:  # modify this later to accept filepath for unit tests
-#     deck = json.load(f)
+cards = {}  # this is our mock database
 
 
-cardFields = {  # there are more but these are what we care about. Also might need to load these differently too?
+def startup():
+    global cards
+    with open(config['cards_location']) as _f:
+        cards = json.load(_f)
+
+
+cardFields = {
     "id": fields.Integer,
     "name": fields.String,
     "qty": fields.Integer
 }
 
+collectionFields = {
+    "cards": fields.Nested(cardFields)
+}
 
-class Cards(Resource):
-    with open(config['cards_location']) as f:
-        cards = json.load(f)  # all cards know about each other to avoid collision
+
+class Collection(Resource):
+    global cards
 
     def __init__(self):
-        # self.reqparse = reqparse.RequestParser()
-        # self.reqparse.add_argument("id", type=int, location="json")
-        # self.reqparse.add_argument("name", type=str, location="json")
-        # self.reqparse.add_argument("price", type=int, location="json")
+        super(Collection, self).__init__()
+
+    def get(self):
+        return {'collection': cards}, 200
+        # else:
+        #     abort(404)
+
+
+class Cards(Resource):
+    global cards  # bad practice but for demo purposes...
+
+    def __init__(self):
         super(Cards, self).__init__()
 
-    def in_collection(self, _id):
-        card = Cards.cards[_id]
-        if card is not None:
-            return True if card['qty'] > 0 else False
-        else:
-            return False
+    def save_db(self):
+        with open(config['cards_location'], 'w') as _f:
+            json.dump(cards, _f)
+            print("saved db")
 
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('id', required=True)
         args = parser.parse_args()
-        if args['id'] in Cards.cards:
-            card = Cards.cards[args['id']]
+        if args['id'] in cards:
+            card = cards[args['id']]
             return {'card': marshal(card, cardFields)}, 200
         else:
             abort(404)
@@ -53,7 +67,7 @@ class Cards(Resource):
         parser.add_argument("name", required=True, type=str)
         parser.add_argument("qty", required=True, type=int)
         args = parser.parse_args()
-        if args['id'] in Cards.cards:
+        if args['id'] in cards:
             return {
                        'message': f"Card #{args['id']} already exists."
                    }, 401
@@ -62,7 +76,8 @@ class Cards(Resource):
             if v is not None:
                 print(k)
                 card[k] = v
-        Cards.cards[args['id']] = card
+        cards[args['id']] = card
+        self.save_db()
         return "Card added.", 200
 
     def put(self):
@@ -71,29 +86,33 @@ class Cards(Resource):
         parser.add_argument("name", required=False, type=str)
         parser.add_argument("qty", required=False, type=int)
         args = parser.parse_args()
-        if args['id'] not in Cards.cards:
+        if args['id'] not in cards:
             return {
                        'message': f"'{args['id']}' does not exist."
                    }, 404
         card = {}
         for k, v in args.items():
             if v is not None:
-                Cards.cards[args['id']][k] = v
+                cards[args['id']][k] = v
+        self.save_db()
         return "Card updated", 200
 
     def delete(self):
         parser = reqparse.RequestParser()
         parser.add_argument('id', required=True)
         args = parser.parse_args()
-        if args['id'] not in Cards.cards:
+        if args['id'] not in cards:
             return {
                        'message': f"'{args['id']}' does not exist."
                    }, 404
-        Cards.cards.pop(args['id'])
+        cards.pop(args['id'])
+        self.save_db()
         return "Card deleted", 200
 
 
+api.add_resource(Collection, "/")
 api.add_resource(Cards, "/cards")
 
 if __name__ == "__main__":
+    startup()
     app.run(debug=True)
