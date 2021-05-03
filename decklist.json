@@ -1,12 +1,12 @@
-[{
-    "id": 1,
+{
+  "0": {
+    "id": 0,
     "name": "Dark Ritual",
-    "price": 100,
-    "qty" : 4
-},
-    {
-    "id": 2,
+    "qty": 4
+  },
+  "1": {
+    "id": 1,
     "name": "Time Walk",
-    "price": 20000,
-    "qty" : 1
-}]
+    "qty": 1
+  }
+}
