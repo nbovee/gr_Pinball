@@ -21,7 +21,7 @@ def main():
         temp = requests.get(pricer + pricer_arg + v['name']).json()
         temp = temp['card']['price']
         if temp is not None:
-            total_price += temp
+            total_price += temp*int(v['qty'])
     print(f"Total price of provided deck is ${total_price}.")
 
 
