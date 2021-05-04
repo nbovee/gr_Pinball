@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0931cac-fc8d-4db5-886e-b8ecbdc24e77" name="Default Changelist" comment="basic but functional">
-      <change afterPath="$PROJECT_DIR$/.run/Cards.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/Scryfall.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/docker-compose.yaml_ Compose Deployment.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/card_collection/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scryfall_wrapper/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/card_collection/card_collection.py" beforeDir="false" afterPath="$PROJECT_DIR$/card_collection/card_collection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/card_collection/card_list.json" beforeDir="false" afterPath="$PROJECT_DIR$/card_collection/card_list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/card_collection/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/card_collection/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/card_collection/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/card_collection/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scryfall_wrapper/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scryfall_wrapper/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scryfall_wrapper/scryfall_wrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scryfall_wrapper/scryfall_wrapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +46,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/price_total" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project" />
       <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project\src\price_total" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -297,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620097640872</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="working Docker images for Cards and Scryfall, Docker-compose still misbehaving. Will likely ignore that until final functionality.">
+      <created>1620103462488</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1620103462488</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -334,6 +331,7 @@
     <MESSAGE value="working Flask for Card Collection microservice" />
     <MESSAGE value="preparing card_collection for Docker" />
     <MESSAGE value="working Flask of scryfall_wrapper" />
-    <option name="LAST_COMMIT_MESSAGE" value="working Flask of scryfall_wrapper" />
+    <MESSAGE value="working Docker images for Cards and Scryfall, Docker-compose still misbehaving. Will likely ignore that until final functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="working Docker images for Cards and Scryfall, Docker-compose still misbehaving. Will likely ignore that until final functionality." />
   </component>
 </project>

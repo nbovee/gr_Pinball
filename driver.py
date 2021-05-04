@@ -3,4 +3,4 @@ import requests
 import json
 
 with open('card_collection/config.json', 'w') as f:
-    config = json.load(f)
+    config = json.load(f) # inject dependencies here
