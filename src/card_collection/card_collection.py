@@ -1,11 +1,14 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse, abort, marshal, fields
 import json
+import os
 
 app = Flask(__name__)
 api = Api(app)
 
-with open('config.json', 'r') as f:
+dirname = os.path.split(os.path.realpath(__file__))
+print(dirname[0])
+with open(os.path.join(dirname[0], 'config.json'), 'r') as f:
     config = json.load(f)
 
 cards = {}  # this is our mock database
@@ -13,7 +16,7 @@ cards = {}  # this is our mock database
 
 def startup():
     global cards
-    with open(config['cards_location']) as _f:
+    with open(os.path.join(dirname[0], config['cards_location'])) as _f:
         cards = json.load(_f)
 
 
@@ -47,7 +50,7 @@ class Cards(Resource):
         super(Cards, self).__init__()
 
     def save_db(self):
-        with open(config['cards_location'], 'w') as _f:
+        with open(os.path.join(dirname[0], config['cards_location']), 'w') as _f:
             json.dump(cards, _f)
             print("saved db")
 
