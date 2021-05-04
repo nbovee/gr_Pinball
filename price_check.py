@@ -1,5 +1,6 @@
 import requests
 # simply ask the decklist api for a dict, and iterate over it with pricer requests
+# this is not its own container in docker because I am not sure how to link containers together rather than to host
 import json
 import os
 
@@ -18,7 +19,6 @@ def main():
     total_price = 0
     for k, v in deck['collection'].items():
         temp = requests.get(pricer + pricer_arg + v['name']).json()
-        print(temp)
         temp = temp['card']['price']
         if temp is not None:
             total_price += temp
