@@ -22,12 +22,11 @@ class Price(Resource):
         args = parser.parse_args()
         card = {}
         card['name'] = args['name']
-        # print("https://api.scryfall.com/cards/named?exact=" + args['name'])
         response = requests.get("https://api.scryfall.com/cards/named?exact=" + args['name'])
         response = response.json()
         if 'prices' in response.keys():
             card['price'] = response['prices']['usd']
-            return {'card_price': marshal(card, cardFields)}, 200
+            return {'card': marshal(card, cardFields)}, 200
         else:
             abort(404)
 
@@ -50,4 +49,4 @@ class Price(Resource):
 api.add_resource(Price, "/")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
