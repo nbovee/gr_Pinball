@@ -12,4 +12,26 @@
     </deployment>
     <method v="2" />
   </configuration>
+  <configuration default="false" name="card_collect\Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+    <deployment type="dockerfile">
+      <settings>
+        <option name="imageTag" value="" />
+        <option name="buildCliOptions" value="" />
+        <option name="command" value="" />
+        <option name="containerName" value="Cards" />
+        <option name="entrypoint" value="" />
+        <option name="portBindings">
+          <list>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="5000" />
+              <option name="hostPort" value="5002" />
+            </DockerPortBindingImpl>
+          </list>
+        </option>
+        <option name="commandLineOptions" value="-P" />
+        <option name="sourceFilePath" value="card_collection/Dockerfile" />
+      </settings>
+    </deployment>
+    <method v="2" />
+  </configuration>
 </component>

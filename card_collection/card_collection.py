@@ -3,6 +3,8 @@ from flask_restful import Resource, Api, reqparse, abort, marshal, fields
 import json
 import os
 
+# ultimately this would support multiple collections but I have no need for that currently
+
 app = Flask(__name__)
 api = Api(app)
 

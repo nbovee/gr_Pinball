@@ -1,4 +1,4 @@
 {
-  "card_db": "127.0.0.0:5001",
-  "card_pricer": "127.0.0.0:5002"
+  "card_db": "http://localhost:5002/",
+  "card_pricer": "http://localhost:5001/"
 }
