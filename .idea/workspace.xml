@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0931cac-fc8d-4db5-886e-b8ecbdc24e77" name="Default Changelist" comment="basic but functional">
-      <change afterPath="$PROJECT_DIR$/.run/scryfall_wrapper_Dockerfile.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/Price Check.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/price_check/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/price_check/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/price_check/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Cards.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Cards.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/docker-compose.yaml_ Compose Deployment.run.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/card_collection/card_collection.py" beforeDir="false" afterPath="$PROJECT_DIR$/card_collection/card_collection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/price_check/price_check.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scryfall_wrapper/scryfall_wrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scryfall_wrapper/scryfall_wrapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,22 +52,24 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/price_check" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project\price_check" />
       <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project" />
       <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project\src\price_total" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project\price_check" />
       <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project" />
       <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project\src\price_total" />
       <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project\src\card_collection" />
       <recent name="F:\Nick\Documents\Code\Homework\AOOP\AOOP_Project\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.driver">
+  <component name="RunManager" selected="Python.price_check">
     <configuration name="card_collection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AOOP_Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,7 +91,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="driver" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="price_check" type="PythonConfigurationType" factoryName="Python">
       <module name="AOOP_Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -95,11 +99,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/price_check" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/driver.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/price_check/price_check.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -133,20 +137,30 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="scryfall_wrapper/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="buildOnly" value="true" />
+          <option name="sourceFilePath" value="scryfall_wrapper/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Docker.Scryfall" />
       <item itemvalue="Docker.Docker Image" />
-      <item itemvalue="Python.driver" />
-      <item itemvalue="Docker.scryfall_wrapper/Dockerfile" />
       <item itemvalue="Docker.card_collect\Dockerfile" />
       <item itemvalue="Python.card_collection" />
+      <item itemvalue="Python.price_check" />
+      <item itemvalue="Docker.price_check/Dockerfile" />
+      <item itemvalue="Docker.scryfall_wrapper/Dockerfile" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.driver" />
-        <item itemvalue="Python.card_collection" />
-        <item itemvalue="Docker.Scryfall" />
         <item itemvalue="Docker.scryfall_wrapper/Dockerfile" />
+        <item itemvalue="Docker.price_check/Dockerfile" />
+        <item itemvalue="Python.price_check" />
+        <item itemvalue="Python.card_collection" />
         <item itemvalue="Docker.Scryfall" />
       </list>
     </recent_temporary>
@@ -301,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620103462488</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="working driver.py">
+      <created>1620143259655</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1620143259655</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -339,14 +360,15 @@
     <MESSAGE value="preparing card_collection for Docker" />
     <MESSAGE value="working Flask of scryfall_wrapper" />
     <MESSAGE value="working Docker images for Cards and Scryfall, Docker-compose still misbehaving. Will likely ignore that until final functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="working Docker images for Cards and Scryfall, Docker-compose still misbehaving. Will likely ignore that until final functionality." />
+    <MESSAGE value="working driver.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="working driver.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/driver.py</url>
-          <line>22</line>
+          <url>file://$PROJECT_DIR$/price_check/price_check.py</url>
+          <line>24</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

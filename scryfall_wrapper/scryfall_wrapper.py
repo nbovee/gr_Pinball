@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse, abort, marshal, fields
 import requests
+import time
 
 app = Flask(__name__)
 api = Api(app)
@@ -24,6 +25,7 @@ class Price(Resource):
         card['name'] = args['name']
         response = requests.get("https://api.scryfall.com/cards/named?exact=" + args['name'])
         response = response.json()
+        time.sleep(0.1)  # rate limit
         if 'prices' in response.keys():
             card['price'] = response['prices']['usd']
             return {'card': marshal(card, cardFields)}, 200
