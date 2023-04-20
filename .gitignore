@@ -1,6 +1,9 @@
 #Google Files
 *.g*
 
+#Stuff
+**/libraries
+**/.venv
 #Solidworks
 *.sld*
 
