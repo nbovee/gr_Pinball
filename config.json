@@ -1,6 +1,0 @@
-{
-  "card_db": "http://localhost:5002/",
-  "card_pricer": "http://localhost:5001/",
-  "deck_call": "",
-  "pricer_call": "?name="
-}
