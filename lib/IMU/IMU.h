@@ -10,7 +10,7 @@
 class IMU
 {
   public:
-    IMUE(int pin);
+    IMU(int pin);
     void begin();
   private:
     int _pin;
