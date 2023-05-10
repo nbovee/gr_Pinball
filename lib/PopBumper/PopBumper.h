@@ -1,19 +1,20 @@
 /*
-  IMU.h - Small handler for IMU results.
+  PopBumper.h - Small handler for individual pop bumpers.
   Created by Nick Bovee, April 24, 2023.
 */
-#ifndef IMU_h
-#define IMU_h
+#ifndef PopBumper_h
+#define PopBumper_h
 
 #include "Arduino.h"
 
-class IMU
+class PopBumper
 {
   public:
-    IMUE(int pin);
+    PopBumper(int pin_input, int pin_trigger);
     void begin();
   private:
-    int _pin;
+    int _pin_in;
+    int _pin_trig;
 };
 
 #endif

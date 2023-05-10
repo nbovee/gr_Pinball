@@ -1,4 +1,10 @@
+//required
 #include <Arduino.h>
+
+//external
+#include <TaskScheduler.h>
+
+//internal
 #include <IOdef.h>
 #include <PopBumper.h>
 #include <Flipper.h>
