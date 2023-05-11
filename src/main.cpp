@@ -1,4 +1,4 @@
-//required
+// required since we are in PlatformIO, not Arduino IDE
 #include <Arduino.h>
 
 // defines kept here to avoid clutter
@@ -17,7 +17,7 @@ Scheduler priority_runner; // input control
 Scheduler middle_runner; // game logic control
 Scheduler standard_runner; // output control
 
-// things
+// Game Objects
 Flipper l_flipper = Flipper(LBMP_b, LBMP_s);
 Flipper r_flipper = Flipper(RBMP_b, RBMP_s);
 
