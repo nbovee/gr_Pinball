@@ -29,17 +29,17 @@ void r_flip_out() {r_flipper.output_call();}
 
 
 // input Tasks
-Task i1(10, TASK_FOREVER, &l_flip_in, &priority_runner);
-Task i2(10, TASK_FOREVER, &r_flip_in, &priority_runner);
+Task i1(TASK_INTERVAL, TASK_FOREVER, &l_flip_in, &priority_runner);
+Task i2(TASK_INTERVAL, TASK_FOREVER, &r_flip_in, &priority_runner);
 
 // game logic Tasks
 
 // output Tasks
-Task o1(10, TASK_FOREVER, &l_flip_out, &standard_runner);
-Task o2(10, TASK_FOREVER, &r_flip_out, &standard_runner);
+Task o1(TASK_INTERVAL, TASK_FOREVER, &l_flip_out, &standard_runner);
+Task o2(TASK_INTERVAL, TASK_FOREVER, &r_flip_out, &standard_runner);
 
 void setup() {
-  // all tasks will update at the same interval, and we'll let the priority system sort it out.
+  // all tasks update at the same interval, and we'll let the priority system sort it out.
   l_flipper.begin();
   r_flipper.begin();
   standard_runner.setHighPriorityScheduler(&middle_runner); 

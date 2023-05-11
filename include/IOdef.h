@@ -24,6 +24,7 @@
 #define HE5 999
 
 // Scheduling behavior defines (before include)
+#define TASK_INTERVAL 5
 #define _TASK_SLEEP_ON_IDLE_RUN
 #define _TASK_PRIORITY
 #define _TASK_WDT_IDS
