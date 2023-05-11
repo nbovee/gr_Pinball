@@ -1,3 +1,4 @@
+#pragma once
 // Buttons
 #define LBMP_b 999
 #define RBMP_b 998
@@ -21,3 +22,10 @@
 #define HE3 999
 #define HE4 999
 #define HE5 999
+
+// Scheduling behavior defines (before include)
+#define _TASK_SLEEP_ON_IDLE_RUN
+#define _TASK_PRIORITY
+#define _TASK_WDT_IDS
+#define _TASK_TIMECRITICAL
+

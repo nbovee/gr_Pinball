@@ -1,24 +1,26 @@
 /*
-  IMU.h - Small handler for IMU results.
+  Flipper.h - Small handler for Flipper control.
   Created by Nick Bovee, April 24, 2023.
 */
-#ifndef Flipper_h
-#define Flipper_h
+
+#ifndef flipper_h
+#define flipper_h
 #define flipper_max_PWM 1023
 #define flipper_eot_PWM 128
-#define flipper_on_time_ms 100
+#define flipper_max_on_ms 100
 #include "Arduino.h"
 
 class Flipper
 {
   public:
-    Flipper(int pin_switch, int pin_solenoid);
+    Flipper( int pin_switch, int pin_solenoid);
     void begin();
-    void update_inputs();
-    void update_outputs();
+    void input_call();
+    void output_call();
   private:
     int _pin_switch;
     int _pin_solenoid;
+    bool _input_state;
+    long _active_time;
 };
-
 #endif
