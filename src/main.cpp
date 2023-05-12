@@ -18,8 +18,8 @@ Scheduler middle_runner; // game logic control
 Scheduler standard_runner; // output control
 
 // Game Objects
-Flipper l_flipper = Flipper(LBMP_b, LBMP_s);
-Flipper r_flipper = Flipper(RBMP_b, RBMP_s);
+Safe_Solenoid l_flipper = Safe_Solenoid(LBMP_b, LBMP_s);
+Safe_Solenoid r_flipper = Safe_Solenoid(RBMP_b, RBMP_s);
 
 // Task definitions
 void flip_in() {l_flipper.input_call();r_flipper.input_call();}
