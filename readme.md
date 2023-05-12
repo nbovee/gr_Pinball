@@ -32,48 +32,80 @@ While individual sensors may be considered trivial, the greater embedded program
 ### C4 Context Diagram
 
 ```mermaid
-    C4Context
-      title Pinball Context Diagram
-      System_Boundary() {
-        Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
-        Person(customerB, "Banking Customer B")
-        Person_Ext(customerC, "Banking Customer C", "desc")
+C4Context
+UpdateLayoutConfig("3","10")
+title Pinball System
+  
+Deployment_Node(pball2, "Main Control Loop"){
+    ComponentQueue(sch1, "Input Manager", "Scheduler")
+    ComponentQueue(sch2, "Logic Manager", "Scheduler")
+    ComponentQueue(sch3, "Output Manager", "Scheduler")
+}
 
-        Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
 
-        System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
+Boundary(tasks, "Tasks", "Tasks"){
+    Component(t1, "Input Tasks", "Task(s)")
+    Component(t2, "Logic Task", "Task")
+    Component(t3, "Output Tasks", "Task(s)")
+}
 
-        Enterprise_Boundary(b1, "BankBoundary") {
+Boundary(components, "I/O Components", "Various Objects"){
+        Component(lcd, "LCD")
 
-          SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
+    Component(flippers, "Flippers", "Flipper", "GPIO & PWM")
+    Component(startbut, "Start Button", "GPIO")
+    Component(popsw, "Pop Switches", "Pop Bumper")
+    Component(hall, "Ball Sensors", "GPIO")
+    Component(imu, "Tilt Detect", "IMU")
 
-          System_Boundary(b2, "BankBoundary2") {
-            System(SystemA, "Banking System A")
-            System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
-          }
+}
 
-          System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
-          SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
+%%Boundary(info,"System Data") {
+    ContainerDb(state1, "Last State", "I/O, Flags, Score")
+        Container(step, "Game Rules Step")
 
-          Boundary(b3, "BankBoundary3", "boundary") {
-            SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
-            SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
-          }
-        }
-      }
+    ContainerDb(state2, "Current IO State", "I/O, Flags, Score")
+%%}
 
-      BiRel(customerA, SystemAA, "Uses")
-      BiRel(SystemAA, SystemE, "Uses")
-      Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
-      Rel(SystemC, customerA, "Sends e-mails to")
+Boundary(pcomponents, "External", "Various Objects"){
+    Person_Ext(player,"Pinball Enjoyer")
+    Component_Ext(ball, "Steel Ball")
+}
 
-      UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
-      UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
-      UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
-      UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
-      UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
+Rel(player, startbut, " ")
+Rel(player, flippers, " ")
+Rel(ball, hall, "")
 
-      UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+%% object to tasks
+Rel(lcd, player, "")
+Rel( t1, flippers, "managed by")
+Rel( t1,startbut," ")
+Rel( t1,popsw," ")
+Rel( t1,hall," ")
+Rel(flippers, ball, "")
+BiRel(popsw, ball, "")
+
+Rel(sch1, sch2, ">")
+Rel(sch2, sch3, ">")
+Rel(sch1, state2, "update")
+
+BiRel(step, state1, "")
+BiRel(step, state2, "")
+Rel(step, t2, "")
+
+
+Rel(sch1, t1, " ")
+Rel(sch2, t2, "")
+Rel(sch3, t3, " ")
+Rel(t3, flippers, " ")
+Rel(t3, popsw, " ")
+Rel(t3, lcd, "")
+Rel(lcd, t3, "")
+
+Rel(state2, t3, "")
+
+
+
 ```
 
 ### Libraries
