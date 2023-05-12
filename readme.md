@@ -2,7 +2,7 @@
 
 <img align="right" src="/docs/sapphire.jpg">
 
-Design and build of a half-scale pinball table. Modern pinball tables use 48V systems with 27mm steel balls. We will reduce our power to 24V for easier sourcing of components, and reduce the size of the steel ball to 19mm (~½ mass of 27mm) to maintain the best approximation of game feel. The approximate layout will match the screenshot on the right of Pokemon Pinball : Sapphire’s table, but may not remain Pokemon themed. To reduce overall complexity, features 2, 4, 5,  8, & 10-13 are intended to be removed.
+This repository contains a project for the design and build of a half-scale pinball table. Modern pinball tables use 48V systems with 27mm steel balls. We will reduce our power to 24V for easier sourcing of components, and reduce the size of the steel ball to 19mm (~½ mass of the standard) to maintain the best approximation of game feel. The approximate layout will match the screenshot on the right of Pokemon Pinball : Sapphire’s table, but may not remain Pokemon themed. To reduce overall complexity, features 2, 4, 5,  8, & 10-13 are intended to be removed.
 
 Mechanical design components will be largely laser cut frames, with acrylic and 3D printed parts as necessary for cosmetic and detail work as needed. Solenoid assemblies require some mechanical level design and may be waterjet aluminum to eliminate potential issues in the timescale of this project. A poster print may be requested to serve as the art for the pinball board. AC and 24V components added by Nick will be soldered and covered for safety.
 While individual sensors may be considered trivial, the greater embedded programming challenge is in the implementation of a large state machine with numerous inputs and feedback methods. Unless time cost is trivial, all components active during gamestate must be non blocking to ensure high speed play is responsive.
@@ -33,8 +33,8 @@ While individual sensors may be considered trivial, the greater embedded program
 
 ```mermaid
     C4Context
-      title System Context diagram for Internet Banking System
-      Enterprise_Boundary(b0, "BankBoundary0") {
+      title Pinball Context Diagram
+      System_Boundary() {
         Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
         Person(customerB, "Banking Customer B")
         Person_Ext(customerC, "Banking Customer C", "desc")
