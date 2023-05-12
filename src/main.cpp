@@ -22,21 +22,17 @@ Flipper l_flipper = Flipper(LBMP_b, LBMP_s);
 Flipper r_flipper = Flipper(RBMP_b, RBMP_s);
 
 // Task definitions
-void l_flip_in() {l_flipper.input_call();}
-void l_flip_out() {l_flipper.output_call();}
-void r_flip_in() {r_flipper.input_call();}
-void r_flip_out() {r_flipper.output_call();}
+void flip_in() {l_flipper.input_call();r_flipper.input_call();}
+void flip_out() {l_flipper.output_call();r_flipper.output_call();}
 
 
 // input Tasks
-Task i1(TASK_INTERVAL, TASK_FOREVER, &l_flip_in, &priority_runner);
-Task i2(TASK_INTERVAL, TASK_FOREVER, &r_flip_in, &priority_runner);
+Task i1(TASK_INTERVAL, TASK_FOREVER, &flip_in, &priority_runner);
 
 // game logic Tasks
 
 // output Tasks
-Task o1(TASK_INTERVAL, TASK_FOREVER, &l_flip_out, &standard_runner);
-Task o2(TASK_INTERVAL, TASK_FOREVER, &r_flip_out, &standard_runner);
+Task o1(TASK_INTERVAL, TASK_FOREVER, &flip_out, &standard_runner);
 
 void setup() {
   // all tasks update at the same interval, and we'll let the priority system sort it out.
