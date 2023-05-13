@@ -23,8 +23,10 @@
 #define HE4 999
 #define HE5 999
 
+#define FLIPPER_EOT_PWM 128
+
 // Scheduling behavior defines (before include)
-#define TASK_INTERVAL 5
+#define _TASK_INTERVAL 5
 #define _TASK_SLEEP_ON_IDLE_RUN
 #define _TASK_PRIORITY
 #define _TASK_WDT_IDS

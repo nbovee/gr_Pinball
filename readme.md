@@ -1,4 +1,4 @@
-## Graduate Embedded Project Proposal: Pinball
+# Graduate Embedded Project Proposal: Pinball
 
 <img align="right" src="/docs/sapphire.jpg">
 
@@ -108,7 +108,13 @@ Rel(state2, t3, "")
 
 ```
 
-### Libraries
+### External Libraries
+
+| Name                | License                 | Notes |
+|-- | -- | -- |
+| TaskScheduler | BSD-3-Clause |  |
+| Liquid_Crystal_i2c | LGPL 2.1 | None listed, but derived from LGPL 2.1 code |
+| Adafruit_MPU6050 | BSD-3-Clause |  |
 
 Main non-default library that i did not write is the Scheduler Library from (GITHUB LINK HERE)
 They look like all MIT licenses.

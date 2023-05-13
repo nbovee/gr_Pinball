@@ -6,44 +6,44 @@
 
 // external
 #include <TaskScheduler.h>
+#include <LiquidCrystal_I2C.h>
 
 // internal
-#include <PopBumper.h>
-#include <Flipper.h>
-#include <IMU.h>
+#include <Safe_Solenoid.h>
 
 // tiered Scheduling allows inputs and logic to run before settung outputs
-Scheduler priority_runner; // input control
-Scheduler middle_runner; // game logic control
-Scheduler standard_runner; // output control
+Scheduler r;
 
 // Game Objects
-Safe_Solenoid l_flipper = Safe_Solenoid(LBMP_b, LBMP_s);
-Safe_Solenoid r_flipper = Safe_Solenoid(RBMP_b, RBMP_s);
+Safe_Solenoid l_flipper = Safe_Solenoid(LBMP_b, LBMP_s, FLIPPER_EOT_PWM);
+Safe_Solenoid r_flipper = Safe_Solenoid(RBMP_b, RBMP_s, FLIPPER_EOT_PWM);
+Safe_Solenoid pop_bumper1 = Safe_Solenoid(POP1_b, POP1_s);
+Safe_Solenoid pop_bumper2 = Safe_Solenoid(POP2_b, POP2_s);
+Safe_Solenoid pop_bumper3 = Safe_Solenoid(POP3_b, POP3_s);
 
-// Task definitions
-void flip_in() {l_flipper.input_call();r_flipper.input_call();}
-void flip_out() {l_flipper.output_call();r_flipper.output_call();}
-
+// void wrappers
+void flippers() {
+  l_flipper.step();
+  r_flipper.step();
+}
 
 // input Tasks
-Task i1(TASK_INTERVAL, TASK_FOREVER, &flip_in, &priority_runner);
+Task flip(_TASK_INTERVAL, TASK_FOREVER, &flippers, &r);
 
 // game logic Tasks
 
 // output Tasks
-Task o1(TASK_INTERVAL, TASK_FOREVER, &flip_out, &standard_runner);
 
 void setup() {
   // all tasks update at the same interval, and we'll let the priority system sort it out.
   l_flipper.begin();
   r_flipper.begin();
-  standard_runner.setHighPriorityScheduler(&middle_runner); 
-  middle_runner.setHighPriorityScheduler(&priority_runner); 
-  standard_runner.enableAll(true); // this will recursively enable the higher priority tasks as well
+  // standard_runner.setHighPriorityScheduler(&middle_runner); 
+  // middle_runner.setHighPriorityScheduler(&priority_runner); 
+  r.enableAll(true); // this will recursively enable the higher priority tasks as well
 }
 
 void loop() {
-  standard_runner.execute();
+  r.execute();
 }
 
