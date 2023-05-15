@@ -103,14 +103,17 @@ Rel(sch1, t1, " ")
 
 ### External Libraries
 
-| Name               | License      | Notes                                                          |
-| ------------------ | ------------ | -------------------------------------------------------------- |
-| TaskScheduler      | BSD-3-Clause |                                                                |
-| Liquid_Crystal_i2c | LGPL 2.1     | None listed, but code is derived from LGPL 2.1 so must inherit |
-| Adafruit_MPU6050   | BSD-3-Clause |                                                                |
+| Name                    | License      | Notes                                                  |
+| ----------------------- | ------------ | ------------------------------------------------------ |
+| SPI                     | LGPL 2.1     | AVR Core library                                       |
+| TaskScheduler           | BSD-3-Clause |                                                        |
+| Liquid_Crystal_i2c      | LGPL 2.1*    | None listed, but derived from LGPL 2.1 so must inherit |
+| Adafruit_MPU6050        | BSD-3-Clause |                                                        |
+| Adafruit BusIO          | MIT          |                                                        |
+| Adafruit Unified Sensor | MIT          |                                                        |
 
 ## Team: Qualifications & Eval
 
 Nick is an experienced engineer and computer scientist with a large background in robotics and electromechanical design. His work in Engineering in the creation of similar equipment and guiding student embedded design projects, is highly relevant, and he has work experience with industrial and home robotics. As a student he retrofit a drive by wire systems into a golf cart for undergraduate senior design, and is currently performing research in robotics and AI with Dr. Ho. Recent personal projects include custom fighting game controllers, keyboards, and an MTG card sorting machine.
 
-With these skills Nick has done well with the project and has ensured code is easily modifiable to allow cut components to be reintroduced as needed. Between unfortunate personal circumstances and full-time responsibilities more features than desired were cut before final delivery.
+Nick was responsible for the entirety of the project. With these skills Nick has done well with the project and has ensured code is easily modifiable to allow cut components to be reintroduced as needed. Between unfortunate personal circumstances and full-time responsibilities more features than desired were cut before final delivery.
