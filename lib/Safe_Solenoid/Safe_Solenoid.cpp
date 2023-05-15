@@ -4,10 +4,10 @@
 Safe_Solenoid::Safe_Solenoid(int pin_switch, int pin_solenoid, int safe_PWM)
 {
   _pin_switch = pin_switch;
-  if (digitalPinHasPWM(_pin_solenoid)) // just in case
-  {
-    this->_pin_solenoid = pin_solenoid;
-  }
+  // if (digitalPinHasPWM(_pin_solenoid)) // just in case
+  // {
+  this->_pin_solenoid = pin_solenoid;
+  // }
   _safe_PWM = safe_PWM;
 }
 
@@ -19,7 +19,9 @@ Safe_Solenoid::Safe_Solenoid(int pin_switch, int pin_solenoid)
 void Safe_Solenoid::begin()
 {
   pinMode(this->_pin_switch, INPUT_PULLUP);
+  pinMode(this->_pin_solenoid, OUTPUT);
   analogWrite(this->_pin_solenoid, 0);
+  this->_input_state = !digitalRead(this->_pin_switch);
 }
 
 int Safe_Solenoid::step()
@@ -44,5 +46,5 @@ int Safe_Solenoid::step()
   }
   this->_input_state = current_input_state;
   analogWrite(this->_pin_solenoid, writeVal);
-  return writeVal;
+  return current_input_state;
 }

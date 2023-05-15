@@ -36,18 +36,20 @@ Safe_Solenoid pop_3 = Safe_Solenoid(POP3_b, POP3_s);
 // void task wrappers
 void flippers()
 {
-  Serial.println("T:Flippers");
-  l_flipper.step();
-  r_flipper.step();
+  Serial.print("T:Flippers");
+  Serial.print(" ");
+  Serial.print(l_flipper.step());
+  Serial.print(" ");
+  Serial.println(r_flipper.step());
 }
 
 void bumpers()
 {
   Serial.println("T:Bumpers");
-  int p1 = pop_1.step();
-  int p2 = pop_2.step();
-  int p3 = pop_3.step();
-  if (p1 || p2 || p3)
+  Serial.print(pop_1.step());
+  Serial.print(pop_2.step());
+  Serial.println(pop_3.step());
+  if (pop_1._input_state || pop_2._input_state || pop_3._input_state)
   { // bumper has been triggered somehow.
     score += 100;
   }
@@ -87,6 +89,7 @@ void find_cheater()
 void show_score()
 {
   Serial.println("T:LCD");
+  lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(score);
 }
@@ -120,6 +123,8 @@ void setup()
   r_flipper.begin();
   imu.begin();
   lcd.init();
+  lcd.backlight();
+  lcd.print("Waiting for Start.");
   score = 0;
   pinMode(START_b, INPUT_PULLUP);
   pinMode(HE1, INPUT_PULLUP);
