@@ -112,6 +112,12 @@ Rel(sch1, t1, " ")
 | Adafruit BusIO          | MIT          |                                                        |
 | Adafruit Unified Sensor | MIT          |                                                        |
 
+## Challenges, Fixes, Future Work
+ 
+Currently the selected MOSFETs do not function as expected. Under full PWM they only provide 20% of the expected power to the solenoids for flippers and popbumpers, and due to this they do not actuate. Different FETs must be selected for full function.
+
+Future work will include LED and Sound function, as well as improvements to the game board and interactable components. 
+
 ## Team: Qualifications & Eval
 
 Nick is an experienced engineer and computer scientist with a large background in robotics and electromechanical design. His work in Engineering in the creation of similar equipment and guiding student embedded design projects, is highly relevant, and he has work experience with industrial and home robotics. As a student he retrofit a drive by wire systems into a golf cart for undergraduate senior design, and is currently performing research in robotics and AI with Dr. Ho. Recent personal projects include custom fighting game controllers, keyboards, and an MTG card sorting machine.
